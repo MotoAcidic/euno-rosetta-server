@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 DigiByte Foundation NZ Limited
+ * Copyright (c) 2020 EunoPay Foundation NZ Limited
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -23,8 +23,8 @@ const RosettaSDK = require('rosetta-node-sdk');
 
 const Config = require('./config');
 const ServiceHandlers = require('./src/services');
-const DigiByteSyncer = require('./src/digibyteSyncer');
-const DigiByteIndexer = require('./src/digibyteIndexer');
+const EunoPaySyncer = require('./src/EunoPaySyncer');
+const EunoPayIndexer = require('./src/EunoPayIndexer');
 const rpc = require('./src/rpc');
 
 console.log(`                                                                    
@@ -36,7 +36,7 @@ console.log(`
 
              Version                  ${Config.version}
              Rosetta Version          ${Config.rosettaVersion}
-             DigiByte Node Version    ${Config.digibyteVersion}
+             EunoPay Node Version    ${Config.digibyteVersion}
              Networks                 ${JSON.stringify(Config.serverConfig.networkIdentifiers)}
              Port                     ${Config.port}
 `);
@@ -87,22 +87,22 @@ if (Config.offline) {
 
 /* Initialize Syncer */
 const startSyncer = async () => {
-  console.log(`Starting sync from height ${DigiByteIndexer.lastBlockSymbol + 1}...`);
-  await DigiByteSyncer.initSyncer();
+  console.log(`Starting sync from height ${EunoPayIndexer.lastBlockSymbol + 1}...`);
+  await EunoPaySyncer.initSyncer();
 
   continueSyncIfNeeded();
   return true;
 };
 
 const continueSyncIfNeeded = async () => {
-  const currentHeight = DigiByteIndexer.lastBlockSymbol;
+  const currentHeight = EunoPayIndexer.lastBlockSymbol;
   const blockCountResponse = await rpc.getBlockCountAsync();
   const blockCount = blockCountResponse.result;
 
   if (currentHeight >= blockCount) {
     // If the sync block height equals the best block height,
     // set the syncer as synced.
-    DigiByteSyncer.setIsSynced();
+    EunoPaySyncer.setIsSynced();
     return setTimeout(continueSyncIfNeeded, 10000);
   }
 
@@ -112,8 +112,8 @@ const continueSyncIfNeeded = async () => {
   const syncCount = Math.min(blockCount - nextHeight, 1000);
   const targetHeight = nextHeight + syncCount;
 
-  await DigiByteSyncer.sync(nextHeight, targetHeight);
-  await DigiByteIndexer.saveState();
+  await EunoPaySyncer.sync(nextHeight, targetHeight);
+  await EunoPayIndexer.saveState();
 
   setImmediate(() => {
     // Continue to sync, but using the event queue.
@@ -154,7 +154,7 @@ const init = async () => {
   await startServer();
 
   // Init the UTXO indexing service
-  await DigiByteIndexer.initIndexer();
+  await EunoPayIndexer.initIndexer();
 
   // Start the UTXO indexer
   await startSyncer();

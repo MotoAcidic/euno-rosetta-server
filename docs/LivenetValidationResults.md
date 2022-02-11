@@ -1,16 +1,16 @@
 # Livenet Data API Validation Results
 
-Rosetta CLI has been successfully executed with a fully synced DigiByte Rosetta Node.
+Rosetta CLI has been successfully executed with a fully synced EunoPay Rosetta Node.
 
 This configuration was used in order to validate the Data API:
 ```json
 {
  "network": {
-  "blockchain": "DigiByte",
+  "blockchain": "EunoPay",
   "network": "livenet"
  },
  "online_url": "http://localhost:8080",
- "data_directory": "digibyte-rosetta-server/data",
+ "data_directory": "EunoPay-rosetta-server/data",
  "http_timeout": 10,
  "sync_concurrency": 8,
  "transaction_concurrency": 16,

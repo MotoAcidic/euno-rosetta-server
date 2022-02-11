@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 DigiByte Foundation NZ Limited
+ * Copyright (c) 2020 EunoPay Foundation NZ Limited
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -34,7 +34,7 @@ const Network = CustomNetworks[Config.network];
 
 const rpc = require('../rpc');
 const Errors = require('../../config/errors');
-const DigiByteIndexer = require('../digibyteIndexer');
+const EunoPayIndexer = require('../EunoPayIndexer');
 
 const Types = RosettaSDK.Client;
 
@@ -67,7 +67,7 @@ const constructionMetadata = async (params) => {
 
     if (amount < 0) {
       // Get the utxos accociated with that address.
-      const outputs = await DigiByteIndexer.getAccountOutputs(account);
+      const outputs = await EunoPayIndexer.getAccountOutputs(account);
 
       /**
        * Collect as many outputs as we need to fulfill

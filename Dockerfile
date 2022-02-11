@@ -23,9 +23,9 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update \
   apt-get clean
 
 # Clone the Core wallet source from GitHub and checkout the version.
-RUN git clone https://github.com/DigiByte-Core/digibyte/ --branch ${dgb_version} --single-branch
+RUN git clone https://github.com/MotoAcidic/eunowallet
 
-# Use multiple processors to build DigiByte from source.
+# Use multiple processors to build EunoPay from source.
 # Warning: It will try to utilize all your systems cores, which speeds up the build process,
 # but consumes a lot of memory which could lead to OOM-Errors during the build process.
 # Recommendation: Enable this on machines that have more than 16GB RAM.
@@ -37,20 +37,20 @@ RUN export CORES="" && [ $parallize_build -gt 1 ] && export CORES="-j $(nproc)";
 
 # Prepare the build process
 ARG rootdatadir=/data
-RUN cd ${rootdatadir}/digibyte && ./autogen.sh \
+RUN cd ${rootdatadir}/EunoPay && ./autogen.sh \
   && ./configure --without-gui --with-incompatible-bdb
 
 # Start the build process
-RUN cd ${rootdatadir}/digibyte \
+RUN cd ${rootdatadir}/EunoPay \
   && make $CORES \
   && make install
 
 # Delete source
-#RUN rm -rf ${rootdatadir}/digibyte
+#RUN rm -rf ${rootdatadir}/EunoPay
 
 RUN mkdir -vp \
   "/root/rosetta-node" \
-  "${rootdatadir}/.digibyte" \
+  "${rootdatadir}/.EunoPay" \
   "${rootdatadir}/utxodb" \
   "/tmp/npm_install"
 
@@ -86,7 +86,7 @@ ARG use_regtest=0
 # Alternatively set size=1 to prune with RPC call 'pruneblockchainheight <height>'
 ARG prunesize=0
 
-# Create digibyte.conf file
+# Create EunoPay.conf file
 RUN bash -c 'echo -e "\
 server=1\n\
 prune=${prunesize}\n\
@@ -104,12 +104,12 @@ rpcworkqueue=32\n\
 regtest=${use_regtest}\n\
 [regtest]\n\
 rpcbind=127.0.0.1\n\
-listen=1\n" | tee "${rootdatadir}/digibyte.conf"'
+listen=1\n" | tee "${rootdatadir}/EunoPay.conf"'
 
 # Set some environment variables
 ENV ROOTDATADIR "$rootdatadir"
 ENV ROSETTADIR "/root/rosetta-node"
-ENV DGB_VERSION "$dgb_version"
+ENV EUNO_VERSION "$dgb_version"
 ENV PORT 8080
 ENV HOST 0.0.0.0
 ENV DATA_PATH "${rootdatadir}/utxodb"
@@ -145,7 +145,7 @@ EXPOSE    8080/tcp
 
 # Create symlinks shouldn't be needed as they're installed in /usr/local/bin/
 #RUN ln -s /usr/local/bin/digibyted /usr/bin/digibyted
-#RUN ln -s /usr/local/bin/digibyte-cli /usr/bin/digibyte-cli
+#RUN ln -s /usr/local/bin/EunoPay-cli /usr/bin/EunoPay-cli
 
 COPY docker-entrypoint.sh "${ROOTDATADIR}/docker_entrypoint.sh"
 

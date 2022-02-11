@@ -1,49 +1,31 @@
-/* DigiByte Networks Params for Bitcore-lib */
+/* EunoPay Networks Params for Bitcore-lib */
 
 const livenet = {
-  name: 'dgb_livenet',
-  alias: 'dgb_mainnet',
-  bech32prefix: 'dgb',
-  pubkeyhash: 0x1e,
-  privatekey: 0x80,
-  privatekeyOld: 0x9e,
-  scripthash: 0x3f,
-  scripthashTwo: 0x05,
-  xpubkey: 0x0488b21e,
-  xprivkey: 0x0488ade4,
-  networkMagic: 0xfac3b6da,
-  port: 12024,
-  dnsSeeds: [
-    'seed.digibyte.co',
-    'seed.digibyte.io',
-    'digiexplorer.info',
-  ],
+    name: 'euno_livenet',
+    alias: 'euno_mainnet',
+    bech32prefix: 'euno',
+    pubkeyhash: 0x15,
+    privatekey: 0x09,
+    scripthash: 0x11,
+    stakinghash: 0x3f,
+    networkMagic: 0x90c4fde9,
+    port: 46462,
+    dnsSeeds: [
+        'seed.euno.network',
+    ],
 };
 
 const testnet = {
-  name: 'dgb_testnet',
-  alias: 'dgb_testnet',
-  bech32prefix: 'dgbt',
-  pubkeyhash: 0x7e,
-  privatekey: 0xfe,
-  scripthash: 0x8c,
-  xpubkey: 0x043587cf,
-  xprivkey: 0x04358394,
-};
-
-const regtest = {
-  name: 'dgb_regtest',
-  alias: 'dgb_regtest',
-  bech32prefix: 'dgbrt',
-  pubkeyhash: 0x7e,
-  privatekey: 0xfe,
-  scripthash: 0x8c,
-  xpubkey: 0x043587cf,
-  xprivkey: 0x04358394,
+  name: 'euno_testnet',
+  alias: 'euno_testnet',
+  bech32prefix: 'teuno',
+  pubkeyhash: 0x8b,
+  privatekey: 0xef,
+  scripthash: 0x13,
+  stakinghash: 0x49,
 };
 
 module.exports = {
   livenet,
   testnet,
-  regtest,
 };

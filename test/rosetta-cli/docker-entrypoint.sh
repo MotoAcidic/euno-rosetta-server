@@ -36,10 +36,10 @@ wait_for_node() {
 wait_for_node http $OFFLINE_HOST $OFFLINE_PORT "hello"
 wait_for_node http $ONLINE_HOST $ONLINE_PORT "hello"
 
-cat << EOF > digibyte.conf
+cat << EOF > EunoPay.conf
 {
  "network": {
-  "blockchain": "DigiByte",
+  "blockchain": "EunoPay",
   "network": "regtest"
  },
  "online_url": "http://$ONLINE_HOST:$ONLINE_PORT",
@@ -67,7 +67,7 @@ cat << EOF > digibyte.conf
       "name": "find_address",
       "actions": [
        {
-        "input": "{\"symbol\":\"DGB\", \"decimals\":8}",
+        "input": "{\"symbol\":\"EUNO\", \"decimals\":8}",
         "type": "set_variable",
         "output_path": "currency"
        },
@@ -98,7 +98,7 @@ cat << EOF > digibyte.conf
       "name": "create_account",
       "actions": [
        {
-        "input": "{\"network\":\"regtest\", \"blockchain\":\"DigiByte\"}",
+        "input": "{\"network\":\"regtest\", \"blockchain\":\"EunoPay\"}",
         "type": "set_variable",
         "output_path": "network"
        },
@@ -128,12 +128,12 @@ cat << EOF > digibyte.conf
       "name": "transfer",
       "actions": [
        {
-        "input": "{\"network\":\"regtest\", \"blockchain\":\"DigiByte\"}",
+        "input": "{\"network\":\"regtest\", \"blockchain\":\"EunoPay\"}",
         "type": "set_variable",
         "output_path": "transfer.network"
        },
        {
-        "input": "{\"symbol\":\"DGB\", \"decimals\":8}",
+        "input": "{\"symbol\":\"EUNO\", \"decimals\":8}",
         "type": "set_variable",
         "output_path": "currency"
        },
@@ -206,14 +206,14 @@ cat << EOF > digibyte.conf
 }
 EOF
 
-cat digibyte.conf
+cat EunoPay.conf
 
 # Wait 5 seconds...
 sleep 8
 
 # Run Rosetta CLI
 echo "Checking Data API..."
-./bin/rosetta-cli check:data --configuration-file digibyte.conf
+./bin/rosetta-cli check:data --configuration-file EunoPay.conf
 
 echo "Checking Construction API..."
-./bin/rosetta-cli check:construction --configuration-file digibyte.conf
+./bin/rosetta-cli check:construction --configuration-file EunoPay.conf
