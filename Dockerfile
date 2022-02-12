@@ -5,10 +5,6 @@ WORKDIR /data
 ARG dgb_version=7.17.2
 ARG arch=x86_64
 
-# You can confirm your timezone by setting the TZ database name field from:
-# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-ARG local_timezone=Europe/Berlin
-
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
 RUN apt-get update \
