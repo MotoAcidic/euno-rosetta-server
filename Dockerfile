@@ -13,7 +13,7 @@ RUN apt update -y \
 && apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y \
 && apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y \
 && apt-get install software-properties-common -y \
-&& echo "" | sudo add-apt-repository ppa:bitcoin/bitcoin -y \
+&& add-apt-repository ppa:bitcoin/bitcoin -y \
 && apt-get update -y \
 && apt-get install libdb4.8-dev libdb4.8++-dev -y
 
