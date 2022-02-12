@@ -37,13 +37,13 @@ RUN export CORES="" && [ $parallize_build -gt 1 ] && export CORES="-j $(nproc)";
 
 # Prepare the build process
 ARG rootdatadir=/data
-RUN cd ${rootdatadir}/eunowallet && ./autogen.sh \
-  && ./configure --with-incompatible-bdb
+RUN cd ${rootdatadir}/eunowallet && ./autogen.sh
+
+# Configure the build process
+RUN ./configure --with-incompatible-bdb
 
 # Start the build process
-RUN cd ${rootdatadir}/eunopay \
-  && make $CORES \
-  && make install
+RUN make
 
 # Delete source
 #RUN rm -rf ${rootdatadir}/digibyte
