@@ -40,10 +40,10 @@ ARG rootdatadir=/data
 RUN cd ${rootdatadir}/eunowallet && ./autogen.sh
 
 # Configure the build process
-RUN ./configure --with-incompatible-bdb
+RUN cd ${rootdatadir}/eunowallet && ./configure --with-incompatible-bdb
 
 # Start the build process
-RUN make
+RUN cd ${rootdatadir}/eunowallet && make
 
 # Delete source
 #RUN rm -rf ${rootdatadir}/digibyte
