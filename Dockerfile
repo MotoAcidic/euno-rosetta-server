@@ -3,15 +3,11 @@ USER root
 WORKDIR /data
 
 ARG dgb_version=7.17.2
-ARG arch=x86_64
 
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
 RUN apt-get update \
   && apt-get install -y nodejs npm \
-  pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev \
-  libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev \
-  libdb-dev libdb++-dev && \
   apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y && \
   apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y && \
   apt-get install software-properties-common -y && \
