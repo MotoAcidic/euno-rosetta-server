@@ -3,7 +3,7 @@ USER root
 WORKDIR /data
 
 ARG dgb_version=7.17.2
-
+DEBIAN_FRONTEND=noninteractive
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
 RUN apt update -y
