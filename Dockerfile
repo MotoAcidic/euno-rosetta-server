@@ -37,11 +37,11 @@ RUN export CORES="" && [ $parallize_build -gt 1 ] && export CORES="-j $(nproc)";
 
 # Prepare the build process
 ARG rootdatadir=/data
-RUN cd ${rootdatadir}/EunoPay && ./autogen.sh \
+RUN cd ${rootdatadir}/eunopay && ./autogen.sh \
   && ./configure --without-gui --with-incompatible-bdb
 
 # Start the build process
-RUN cd ${rootdatadir}/EunoPay \
+RUN cd ${rootdatadir}/eunopay \
   && make $CORES \
   && make install
 
@@ -50,7 +50,7 @@ RUN cd ${rootdatadir}/EunoPay \
 
 RUN mkdir -vp \
   "/root/rosetta-node" \
-  "${rootdatadir}/.EunoPay" \
+  "${rootdatadir}/.eunopay" \
   "${rootdatadir}/utxodb" \
   "/tmp/npm_install"
 
@@ -104,7 +104,7 @@ rpcworkqueue=32\n\
 regtest=${use_regtest}\n\
 [regtest]\n\
 rpcbind=127.0.0.1\n\
-listen=1\n" | tee "${rootdatadir}/EunoPay.conf"'
+listen=1\n" | tee "${rootdatadir}/euno.conf"'
 
 # Set some environment variables
 ENV ROOTDATADIR "$rootdatadir"
