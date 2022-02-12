@@ -7,7 +7,7 @@ ARG dgb_version=7.17.2
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
 RUN apt-get update \
-  && apt-get install -y nodejs npm \
+  && apt-get nodejs npm \
   apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y && \
   apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y && \
   apt-get install software-properties-common -y && \
@@ -17,8 +17,7 @@ RUN apt-get update \
   apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev -y && \
   apt-get install libzmq3-dev -y && \
   apt-get install libminiupnpc-dev -y && \
-  apt-get install libgmp3-dev libevent-dev bsdmainutils libboost-all-dev openssl -y && \
-  apt install g++-mingw-w64-x86-64 -y 
+  apt-get install libgmp3-dev libevent-dev bsdmainutils libboost-all-dev openssl
 
 # Clone the Core wallet source from GitHub and checkout the version.
 RUN git clone https://github.com/MotoAcidic/eunowallet/
