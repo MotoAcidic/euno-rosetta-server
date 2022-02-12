@@ -23,9 +23,9 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update \
   apt-get clean
 
 # Clone the Core wallet source from GitHub and checkout the version.
-RUN git clone https://github.com/MotoAcidic/eunowallet
+RUN git clone https://github.com/MotoAcidic/eunowallet/
 
-# Use multiple processors to build EunoPay from source.
+# Use multiple processors to build DigiByte from source.
 # Warning: It will try to utilize all your systems cores, which speeds up the build process,
 # but consumes a lot of memory which could lead to OOM-Errors during the build process.
 # Recommendation: Enable this on machines that have more than 16GB RAM.
@@ -46,7 +46,7 @@ RUN cd ${rootdatadir}/eunopay \
   && make install
 
 # Delete source
-#RUN rm -rf ${rootdatadir}/EunoPay
+#RUN rm -rf ${rootdatadir}/digibyte
 
 RUN mkdir -vp \
   "/root/rosetta-node" \
@@ -86,7 +86,7 @@ ARG use_regtest=0
 # Alternatively set size=1 to prune with RPC call 'pruneblockchainheight <height>'
 ARG prunesize=0
 
-# Create EunoPay.conf file
+# Create digibyte.conf file
 RUN bash -c 'echo -e "\
 server=1\n\
 prune=${prunesize}\n\
@@ -104,12 +104,12 @@ rpcworkqueue=32\n\
 regtest=${use_regtest}\n\
 [regtest]\n\
 rpcbind=127.0.0.1\n\
-listen=1\n" | tee "${rootdatadir}/euno.conf"'
+listen=1\n" | tee "${rootdatadir}/eunopay.conf"'
 
 # Set some environment variables
 ENV ROOTDATADIR "$rootdatadir"
 ENV ROSETTADIR "/root/rosetta-node"
-ENV EUNO_VERSION "$dgb_version"
+ENV EUNO_VERSION "$euno_version"
 ENV PORT 8080
 ENV HOST 0.0.0.0
 ENV DATA_PATH "${rootdatadir}/utxodb"
@@ -121,31 +121,31 @@ ENV RUN_TESTS 1
 RUN if [ "$use_testnet" = "0" ] && [ "$use_regtest" = "0" ]; \
     then \
       echo 'export RPC_PORT="14022"' >> ~/env; \
-      echo 'export DGB_NETWORK="livenet"' >> ~/env; \
+      echo 'export EUNO_NETWORK="livenet"' >> ~/env; \
     elif [ "$use_testnet" = "1" ] && [ "$use_regtest" = "0" ]; \
     then \
       echo 'export RPC_PORT="14023"' >> ~/env; \
-      echo 'export DGB_NETWORK="testnet"' >> ~/env; \
+      echo 'export EUNO_NETWORK="testnet"' >> ~/env; \
     elif [ "$use_testnet" = "0" ] && [ "$use_regtest" = "1" ]; \
     then \
       echo 'export RPC_PORT="18443"' >> ~/env; \
-      echo 'export DGB_NETWORK="regtest"' >> ~/env; \
+      echo 'export EUNO_NETWORK="regtest"' >> ~/env; \
       echo "export REGTEST_SIMULATE_MINING=\"$regtest_simulate_mining\"" >> ~/env; \
     else \
       echo 'export RPC_PORT=""' >> ~/env; \
-      echo 'export DGB_NETWORK=""' >> ~/env; \
+      echo 'export EUNO_NETWORK=""' >> ~/env; \
     fi
 
 # Allow Communications:
 #         p2p mainnet   rpc mainnet   p2p testnet   rpc testnet    p2p regtest    rpc regtest 
-EXPOSE    12024/tcp     14022/tcp     12026/tcp     14023/tcp      18444/tcp      18443/tcp
+EXPOSE    46462/tcp     46463/tcp     12026/tcp     46465/tcp      18444/tcp      18443/tcp
 
 #         Rosetta HTTP Node
 EXPOSE    8080/tcp
 
 # Create symlinks shouldn't be needed as they're installed in /usr/local/bin/
 #RUN ln -s /usr/local/bin/digibyted /usr/bin/digibyted
-#RUN ln -s /usr/local/bin/EunoPay-cli /usr/bin/EunoPay-cli
+#RUN ln -s /usr/local/bin/digibyte-cli /usr/bin/digibyte-cli
 
 COPY docker-entrypoint.sh "${ROOTDATADIR}/docker_entrypoint.sh"
 
