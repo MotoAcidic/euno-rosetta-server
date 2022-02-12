@@ -14,7 +14,7 @@ RUN apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-de
 RUN apt-get install software-properties-common -y
 RUN echo "" | sudo add-apt-repository ppa:bitcoin/bitcoin -y
 RUN apt-get update -y
-RUN apt-get install libdb4.8-dev libdb4.8++-dev -y
+RUN apt-get install libdb4.8-dev libdb4.8++-dev -y -2
 
 # Clone the Core wallet source from GitHub and checkout the version.
 RUN git clone https://github.com/MotoAcidic/eunowallet/
