@@ -7,9 +7,8 @@ ARG dgb_version=7.17.2
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
 RUN apt update -y
-RUN apt upgrade -y
-RUN apt install git -y
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt install git -y
 RUN apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y
 RUN apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y
 RUN apt-get install software-properties-common -y
