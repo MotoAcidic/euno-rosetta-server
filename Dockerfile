@@ -11,9 +11,7 @@ ARG local_timezone=Europe/Berlin
 
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
-RUN DEBIAN_FRONTEND="noninteractive" apt-get update \
-  && dpkg-reconfigure --frontend noninteractive tzdata \
-  && apt-get install -y wget git build-essential libtool autotools-dev automake \
+RUN apt-get update \
   && apt-get install -y nodejs npm \
   pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev \
   libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev \
