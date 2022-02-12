@@ -37,10 +37,7 @@ RUN export CORES="" && [ $parallize_build -gt 1 ] && export CORES="-j $(nproc)";
 
 # Prepare the build process
 ARG rootdatadir=/data
-RUN cd ${rootdatadir}/eunowallet && ./autogen.sh
-
-# Configure the build process
-RUN cd ${rootdatadir}/eunowallet && ./configure --with-incompatible-bdb --with-boost-libdir=/usr/lib/x86_64-linux-gnu
+RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb --disable-wallet --without-gui --without-miniupnpc
 
 # Start the build process
 RUN cd ${rootdatadir}/eunowallet && make
