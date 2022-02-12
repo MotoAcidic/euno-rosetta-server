@@ -17,10 +17,7 @@ RUN apt update -y \
 && apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev -y \
 && apt-get install libzmq3-dev -y \
 && apt-get install libminiupnpc-dev -y \
-&& apt-get install libgmp3-dev libevent-dev bsdmainutils libboost-all-dev openssl -y \
-&& sudo apt-get install libdb5.1++-dev \
-&& apt-get update \
-&& apt-get install -y
+&& apt-get install libgmp3-dev libevent-dev bsdmainutils libboost-all-dev openssl -y
 
 # Clone the Core wallet source from GitHub and checkout the version.
 RUN git clone https://github.com/MotoAcidic/eunowallet/
