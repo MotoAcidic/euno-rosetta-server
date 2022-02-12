@@ -12,8 +12,6 @@ ARG local_timezone=Europe/Berlin
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update \
-  && apt-get -y install tzdata \
-  && ln -fs /usr/share/zoneinfo/${local_timezone} /etc/localtime \
   && dpkg-reconfigure --frontend noninteractive tzdata \
   && apt-get install -y wget git build-essential libtool autotools-dev automake \
   && apt-get install -y nodejs npm \
