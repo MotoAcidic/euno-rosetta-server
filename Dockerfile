@@ -20,8 +20,6 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update \
   pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev \
   libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev \
   libdb-dev libdb++-dev && \
-  apt update && \
-  apt upgrade -y && \
   apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y && \
   apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y && \
   apt-get install software-properties-common -y && \
@@ -32,8 +30,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update \
   apt-get install libzmq3-dev -y && \
   apt-get install libminiupnpc-dev -y && \
   apt-get install libgmp3-dev libevent-dev bsdmainutils libboost-all-dev openssl -y && \
-  apt install g++-mingw-w64-x86-64 -y && \
-  apt-get clean
+  apt install g++-mingw-w64-x86-64 -y 
 
 # Clone the Core wallet source from GitHub and checkout the version.
 RUN git clone https://github.com/MotoAcidic/eunowallet/
