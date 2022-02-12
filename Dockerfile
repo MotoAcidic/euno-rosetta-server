@@ -40,7 +40,7 @@ ARG rootdatadir=/data
 RUN cd ${rootdatadir}/eunowallet && ./autogen.sh
 
 # Configure the build process
-RUN cd ${rootdatadir}/eunowallet && ./configure --with-incompatible-bdb
+RUN cd ${rootdatadir}/eunowallet && ./configure --with-incompatible-bdb --with-boost-libdir=/usr/lib/x86_64-linux-gnu
 
 # Start the build process
 RUN cd ${rootdatadir}/eunowallet && make
