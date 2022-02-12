@@ -21,7 +21,7 @@ and yields this output:
         {
             "value": "463275000",
             "currency": {
-                "symbol": "DGB",
+                "symbol": "EUNO",
                 "decimals": 8
             }
         }

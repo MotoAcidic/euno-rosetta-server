@@ -16,7 +16,7 @@ networks:
 
 services:
   # Offline Node
-  digibyte_offline:
+  eunopay_offline:
     build:
       dockerfile: Dockerfile
       context: ..      
@@ -39,10 +39,10 @@ services:
       - offline_net
       - test
 
-    container_name: digibyte_offline
+    container_name: eunopay_offline
 
   # Online Node
-  digibyte_online:
+  eunopay_online:
     build:
       dockerfile: Dockerfile
       context: ..      
@@ -68,9 +68,9 @@ services:
       - test
 
     depends_on:
-      - digibyte_offline
+      - eunopay_offline
 
-    container_name: digibyte_online
+    container_name: eunopay_online
 
   # Rosetta CLI tester
   rosetta_cli:
@@ -81,8 +81,8 @@ services:
         - version_tag=4bb48b24a794deb3635973e32d1ea806e5b30729
 
     environment:
-      - OFFLINE_HOST=digibyte_offline
-      - ONLINE_HOST=digibyte_online        
+      - OFFLINE_HOST=eunopay_offline
+      - ONLINE_HOST=eunopay_online        
       - OFFLINE_PORT=1337
       - ONLINE_PORT=1338
 
@@ -90,7 +90,7 @@ services:
       - test
 
     depends_on:
-      - digibyte_online
+      - eunopay_online
 
   # # NodeJS Test Runner
   # test_runner:
@@ -99,8 +99,8 @@ services:
   #     context: ..
 
   #   environment:
-  #     - OFFLINE_HOST=digibyte_offline
-  #     - ONLINE_HOST=digibyte_online        
+  #     - OFFLINE_HOST=eunopay_offline
+  #     - ONLINE_HOST=eunopay_online        
   #     - OFFLINE_PORT=1337
   #     - ONLINE_PORT=1338
 
@@ -108,4 +108,4 @@ services:
   #     - test
 
   #   depends_on:
-  #     - digibyte_online      
+  #     - eunopay_online      

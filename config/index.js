@@ -4,14 +4,14 @@ const crypto = require('crypto');
 
 const DEFAULT_LISTENING_HOST = 'localhost';
 const DEFAULT_ROSETTA_VERSION = '1.3.1';
-const DEFAULT_RPC_PORT = 14022;
+const DEFAULT_RPC_PORT = 46463;
 const DEFAULT_RPC_USER = 'user';
 const DEFAULT_RPC_PASS = 'pass';
 const DEFAULT_RPC_HOST = 'localhost';
 const DEFAULT_RPC_PROTO = 'http';
 const DEFAULT_LISTENING_PORT = 8080;
 const DEFAULT_DATA_PATH = './data';
-const DEFAULT_DGB_NETWORK = 'livenet';
+const DEFAULT_DGB_NETWORK = 'mainnet';
   
 /**
  * syncerSecret is used by the Indexer in order to request blocks from 
@@ -29,7 +29,7 @@ const syncerSecret = process.env.SYNCER_SECRET ||
 const config = {
   version: '1.0.0',
   rosettaVersion: RosettaSDK.Version || DEFAULT_ROSETTA_VERSION,
-  digibyteVersion: process.env.DGB_VERSION,
+  digibyteVersion: process.env.EUNO_VERSION,
   port: process.env.PORT || DEFAULT_LISTENING_PORT,
   host: process.env.HOST || DEFAULT_LISTENING_HOST,
   offline: !!parseInt(process.env.OFFLINE_MODE),
@@ -65,7 +65,7 @@ config.syncer = {
 };
 
 if (!config.rosettaVersion) throw new Error('RosettaVersion not defined');
-if (!config.digibyteVersion) throw new Error('DGB_VERSION not set');
+if (!config.digibyteVersion) throw new Error('EUNO_VERSION not set');
 if (!config.rpc.rpc_port) throw new Error('RPC_PORT not set');
 if (!config.rpc.rpc_user) throw new Error('RPC_USER not set');
 if (!config.rpc.rpc_pass) throw new Error('RPC_PASS not set');

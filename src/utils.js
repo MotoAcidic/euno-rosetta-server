@@ -4,7 +4,7 @@ const Types = RosettaSDK.Client;
 
 const Config = require('../config');
 const Constants = require('./constants');
-const DigiByteIndexer = require('./digibyteIndexer');
+const EunoPayIndexer = require('./EunoPayIndexer');
 
 const OperationTypes = Config.serverConfig.operationTypes;
 const OperationStatus = Config.serverConfig.operationStatuses;
@@ -44,7 +44,7 @@ const txOperations = async (tx, isMempoolTx = false) => {
     const { txid, vout } = input;
 
     // Get the utxo data from utxo indexer
-    const data = await DigiByteIndexer.getUtxoData(txid, vout);
+    const data = await EunoPayIndexer.getUtxoData(txid, vout);
     if (data == null || !data.address) continue;
 
     const nextOperationId = operationId++;

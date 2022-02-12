@@ -19,7 +19,7 @@ wait_for_digibyted()
         "rpcport=$RPC_PORT"
 
     while true; do
-        digibyte-cli \
+        EunoPay-cli \
             -rpcuser="$RPC_USER" \
             -rpcpassword="$RPC_PASS" \
             -rpcport="$RPC_PORT" \
@@ -40,7 +40,7 @@ wait_for_digibyted()
 
 simulate_mining() {
     # Mine to an address
-    node1="digibyte-cli -conf=${DATA_DIR}/digibyte.conf -datadir=${DATA_DIR}/.digibyte"
+    node1="EunoPay-cli -conf=${DATA_DIR}/EunoPay.conf -datadir=${DATA_DIR}/.EunoPay"
 
     # Generate three addresses
     dgb_address1=`$node1 getnewaddress "" bech32`
@@ -59,7 +59,7 @@ simulate_mining() {
     hashes=`$node1 generatetoaddress 101 $dgb_address1`
     spendable=72000
 
-    # Send some DGB to another address
+    # Send some EUNO to another address
     send=$(($spendable - 100))
     txid=`$node1 sendtoaddress $dgb_address2 $send`
 
@@ -88,13 +88,13 @@ if [ ! -d "$DATA_DIR" ]; then
     exit 1
 fi
 
-echo "digibyte.conf contents"
-cat "${DATA_DIR}/digibyte.conf"
+echo "EunoPay.conf contents"
+cat "${DATA_DIR}/EunoPay.conf"
 
 echo "Starting digibyted..."
 digibyted \
-    -conf="${DATA_DIR}/digibyte.conf" \
-    -datadir="${DATA_DIR}/.digibyte" 
+    -conf="${DATA_DIR}/EunoPay.conf" \
+    -datadir="${DATA_DIR}/.EunoPay" 
 
 sleep 2
 

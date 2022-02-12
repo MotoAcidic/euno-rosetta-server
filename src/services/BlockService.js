@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 DigiByte Foundation NZ Limited
+ * Copyright (c) 2020 EunoPay Foundation NZ Limited
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -29,7 +29,7 @@ const Config = require('../../config');
 const Errors = require('../../config/errors');
 
 const SyncBlockCache = require('../syncBlockCache');
-const DigiByteIndexer = require('../digibyteIndexer');
+const EunoPayIndexer = require('../EunoPayIndexer');
 
 /* Data API: Block */
 
@@ -85,7 +85,7 @@ const block = async (params, req) => {
    * utxo indexer.
    */
   const isSyncerRequest = req.headers['syncer-secret'] == Config.syncer.syncerSecret;
-  const requestedDataAvailable = DigiByteIndexer.safeLastBlockSymbol >= blockData.height;  
+  const requestedDataAvailable = EunoPayIndexer.safeLastBlockSymbol >= blockData.height;  
 
   /**
    * Create a Full Block Identifier according to the Rosetta spec.
@@ -126,7 +126,7 @@ const block = async (params, req) => {
      * This error won't be thrown if the request was made by the syncer.
      */
     throw Errors.NODE_SYNCING.addDetails({
-      syncedTo: DigiByteIndexer.safeLastBlockSymbol,
+      syncedTo: EunoPayIndexer.safeLastBlockSymbol,
     });
   }
 

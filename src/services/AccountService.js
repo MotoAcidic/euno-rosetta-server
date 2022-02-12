@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 DigiByte Foundation NZ Limited
+ * Copyright (c) 2020 EunoPay Foundation NZ Limited
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -22,7 +22,7 @@
 const RosettaSDK = require('rosetta-node-sdk');
 const Errors = require('../../config/errors');
 const config = require('../../config');
-const DigiByteIndexer = require('../digibyteIndexer');
+const EunoPayIndexer = require('../EunoPayIndexer');
 const rpc = require('../rpc');
 
 const Types = RosettaSDK.Client;
@@ -63,7 +63,7 @@ const balance = async (params) => {
 
   try {
     // Get the Account Balance from the UTXO Indexer
-    const accountData = await DigiByteIndexer.getAccountBalance(address, atBlock);
+    const accountData = await EunoPayIndexer.getAccountBalance(address, atBlock);
     const { balance } = accountData;
 
     // BlockSymbol

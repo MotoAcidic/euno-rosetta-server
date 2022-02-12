@@ -3,8 +3,8 @@ const axios = require('axios');
 const RosettaSDK = require('rosetta-node-sdk');
 
 const ServiceHandlers = require('../../../src/services');
-const DigiByteSyncer = require('../../../src/digibyteSyncer');
-const DigiByteIndexer = require('../../../src/digibyteIndexer');
+const EunoPaySyncer = require('../../../src/EunoPaySyncer');
+const EunoPayIndexer = require('../../../src/EunoPayIndexer');
 const Config = require('../../../config');
 const rpc = require('../../../src/rpc');
 
@@ -67,22 +67,22 @@ const rpc = require('../../../src/rpc');
 
 //   /* Initialize Syncer */
 //   const startSyncer = async () => {
-//     console.log(`Starting sync from height ${DigiByteIndexer.lastBlockSymbol + 1}...`);
-//     await DigiByteSyncer.initSyncer();
+//     console.log(`Starting sync from height ${EunoPayIndexer.lastBlockSymbol + 1}...`);
+//     await EunoPaySyncer.initSyncer();
 
 //     continueSyncIfNeeded();
 //     return true;
 //   };
 
 //   const continueSyncIfNeeded = async () => {
-//     const currentHeight = DigiByteIndexer.lastBlockSymbol;
+//     const currentHeight = EunoPayIndexer.lastBlockSymbol;
 //     const blockCountResponse = await rpc.getBlockCountAsync();
 //     const blockCount = blockCountResponse.result;
 
 //     if (currentHeight >= blockCount) {
 //       // If the sync block height equals the best block height,
 //       // set the syncer as synced.
-//       DigiByteSyncer.setIsSynced();
+//       EunoPaySyncer.setIsSynced();
 //       return setTimeout(continueSyncIfNeeded, 10000);
 //     }
 
@@ -92,8 +92,8 @@ const rpc = require('../../../src/rpc');
 //     const syncCount = Math.min(blockCount - nextHeight, 1000);
 //     const targetHeight = nextHeight + syncCount;
 
-//     await DigiByteSyncer.sync(nextHeight, targetHeight);
-//     await DigiByteIndexer.saveState();
+//     await EunoPaySyncer.sync(nextHeight, targetHeight);
+//     await EunoPayIndexer.saveState();
 
 //     setImmediate(() => {
 //       // Continue to sync, but using the event queue.
@@ -134,7 +134,7 @@ const rpc = require('../../../src/rpc');
 //     await startServer();
 
 //     // Init the UTXO indexing service
-//     await DigiByteIndexer.initIndexer();
+//     await EunoPayIndexer.initIndexer();
 
 //     // Start the UTXO indexer
 //     await startSyncer();

@@ -1,56 +1,31 @@
-FROM ubuntu:focal
+FROM ubuntu:18.04
 USER root
 WORKDIR /data
 
-ARG dgb_version=7.17.2
-ARG arch=x86_64
+ARG DEBIAN_FRONTEND=noninteractive
+ARG euno_version=7.17.2
 
-# You can confirm your timezone by setting the TZ database name field from:
-# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-ARG local_timezone=Europe/Berlin
-
-# Update apt cache and set tzdata to non-interactive or it will fail later.
-# Also install essential dependencies for the build project.
-RUN DEBIAN_FRONTEND="noninteractive" apt-get update \
-  && apt-get -y install tzdata \
-  && ln -fs /usr/share/zoneinfo/${local_timezone} /etc/localtime \
-  && dpkg-reconfigure --frontend noninteractive tzdata \
-  && apt-get install -y wget git build-essential libtool autotools-dev automake \
-  && apt-get install -y nodejs npm \
-  pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev \
-  libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev \
-  libdb-dev libdb++-dev && \
-  apt-get clean
+# Install essential dependencies for the build project.
+RUN apt-get update && apt-get -y upgrade \
+&& apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default libcurl4-openssl-dev bsdmainutils \
+&& apt-get -y install git
 
 # Clone the Core wallet source from GitHub and checkout the version.
-RUN git clone https://github.com/DigiByte-Core/digibyte/ --branch ${dgb_version} --single-branch
-
-# Use multiple processors to build DigiByte from source.
-# Warning: It will try to utilize all your systems cores, which speeds up the build process,
-# but consumes a lot of memory which could lead to OOM-Errors during the build process.
-# Recommendation: Enable this on machines that have more than 16GB RAM.
-ARG parallize_build=0
-
-# Determine how many cores the build process will use.
-RUN export CORES="" && [ $parallize_build -gt 1 ] && export CORES="-j $(nproc)"; \
-  echo "Using $parallize_build core(s) for build process."
+RUN git clone https://github.com/MotoAcidic/eunowallet/
 
 # Prepare the build process
 ARG rootdatadir=/data
-RUN cd ${rootdatadir}/digibyte && ./autogen.sh \
-  && ./configure --without-gui --with-incompatible-bdb
+RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb --disable-wallet --without-gui --without-miniupnpc
 
 # Start the build process
-RUN cd ${rootdatadir}/digibyte \
-  && make $CORES \
-  && make install
+RUN cd ${rootdatadir}/eunowallet && make
 
 # Delete source
 #RUN rm -rf ${rootdatadir}/digibyte
 
 RUN mkdir -vp \
   "/root/rosetta-node" \
-  "${rootdatadir}/.digibyte" \
+  "${rootdatadir}/.eunopay" \
   "${rootdatadir}/utxodb" \
   "/tmp/npm_install"
 
@@ -104,12 +79,12 @@ rpcworkqueue=32\n\
 regtest=${use_regtest}\n\
 [regtest]\n\
 rpcbind=127.0.0.1\n\
-listen=1\n" | tee "${rootdatadir}/digibyte.conf"'
+listen=1\n" | tee "${rootdatadir}/eunopay.conf"'
 
 # Set some environment variables
 ENV ROOTDATADIR "$rootdatadir"
 ENV ROSETTADIR "/root/rosetta-node"
-ENV DGB_VERSION "$dgb_version"
+ENV EUNO_VERSION "$euno_version"
 ENV PORT 8080
 ENV HOST 0.0.0.0
 ENV DATA_PATH "${rootdatadir}/utxodb"
@@ -121,24 +96,24 @@ ENV RUN_TESTS 1
 RUN if [ "$use_testnet" = "0" ] && [ "$use_regtest" = "0" ]; \
     then \
       echo 'export RPC_PORT="14022"' >> ~/env; \
-      echo 'export DGB_NETWORK="livenet"' >> ~/env; \
+      echo 'export EUNO_NETWORK="livenet"' >> ~/env; \
     elif [ "$use_testnet" = "1" ] && [ "$use_regtest" = "0" ]; \
     then \
       echo 'export RPC_PORT="14023"' >> ~/env; \
-      echo 'export DGB_NETWORK="testnet"' >> ~/env; \
+      echo 'export EUNO_NETWORK="testnet"' >> ~/env; \
     elif [ "$use_testnet" = "0" ] && [ "$use_regtest" = "1" ]; \
     then \
       echo 'export RPC_PORT="18443"' >> ~/env; \
-      echo 'export DGB_NETWORK="regtest"' >> ~/env; \
+      echo 'export EUNO_NETWORK="regtest"' >> ~/env; \
       echo "export REGTEST_SIMULATE_MINING=\"$regtest_simulate_mining\"" >> ~/env; \
     else \
       echo 'export RPC_PORT=""' >> ~/env; \
-      echo 'export DGB_NETWORK=""' >> ~/env; \
+      echo 'export EUNO_NETWORK=""' >> ~/env; \
     fi
 
 # Allow Communications:
 #         p2p mainnet   rpc mainnet   p2p testnet   rpc testnet    p2p regtest    rpc regtest 
-EXPOSE    12024/tcp     14022/tcp     12026/tcp     14023/tcp      18444/tcp      18443/tcp
+EXPOSE    46462/tcp     46463/tcp     12026/tcp     46465/tcp      18444/tcp      18443/tcp
 
 #         Rosetta HTTP Node
 EXPOSE    8080/tcp

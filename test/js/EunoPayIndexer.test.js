@@ -6,12 +6,12 @@ const os = require('os');
 
 const Indexer = require('../../src/Indexer');
 
-describe('DigiByteIndexer', () => {
+describe('EunoPayIndexer', () => {
   let dbPath;
   let instance;
 
   before(async () => {
-    dbPath = await fs.mkdtemp(path.join(os.tmpdir(), 'digibyte-rosetta-tests-'));
+    dbPath = await fs.mkdtemp(path.join(os.tmpdir(), 'EunoPay-rosetta-tests-'));
     instance = new Indexer({ path: dbPath });
     console.log(`Database initialized in path ${dbPath}`);
   });

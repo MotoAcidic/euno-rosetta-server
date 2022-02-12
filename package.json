@@ -1,18 +1,18 @@
 {
-  "name": "digibyte-rosetta-server",
+  "name": "EunoPay-rosetta-server",
   "version": "1.0.0",
   "description": "Rosetta Node Implementation using Rosetta SDK",
   "main": "index.js",
   "scripts": {
     "test-api": "cd test && docker-compose up",
     "test": "mocha test/js/*.test.js",
-    "build": "docker build -t digibyte-rosetta:latest .",
+    "build": "docker build -t EunoPay-rosetta:latest .",
     "start": "node --max-old-space-size=4096 index.js",
     "dev": "nodemon .",
     "lint": "eslint ."
   },
   "dependencies": {
-    "rosetta-node-sdk": "git+https://github.com/SmartArray/digibyte-rosetta-nodeapi.git#1.4.1",
+    "rosetta-node-sdk": "git+https://github.com/MotoAcidic/EunoPay-rosetta-nodeapi.git#1.4.1",
     "bitcore-lib": "^8.22.0",
     "bitcoind-rpc": "^0.8.1",
     "js-binary": "^1.2.0",
@@ -22,7 +22,7 @@
   "keywords": [
     "rosetta",
     "coinbase",
-    "digibyte",
+    "EunoPay",
     "server"
   ],
   "author": "yoshijaeger",
