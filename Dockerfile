@@ -19,16 +19,6 @@ RUN apt-get install libdb4.8-dev libdb4.8++-dev -y
 # Clone the Core wallet source from GitHub and checkout the version.
 RUN git clone https://github.com/MotoAcidic/eunowallet/
 
-# Use multiple processors to build DigiByte from source.
-# Warning: It will try to utilize all your systems cores, which speeds up the build process,
-# but consumes a lot of memory which could lead to OOM-Errors during the build process.
-# Recommendation: Enable this on machines that have more than 16GB RAM.
-ARG parallize_build=0
-
-# Determine how many cores the build process will use.
-RUN export CORES="" && [ $parallize_build -gt 1 ] && export CORES="-j $(nproc)"; \
-  echo "Using $parallize_build core(s) for build process."
-
 # Prepare the build process
 ARG rootdatadir=/data
 RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb --disable-wallet --without-gui --without-miniupnpc
