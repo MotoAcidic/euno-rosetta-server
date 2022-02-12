@@ -7,17 +7,17 @@ ARG euno_version=7.17.2
 
 # Install essential dependencies for the build project.
 RUN apt-get update && apt-get -y upgrade \
-&& apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default libcurl4-openssl-dev bsdmainutils openssl libssl-dev \
+&& apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default libcurl4-openssl-dev bsdmainutils openssl libssl-dev libzmq3-dev libgmp-dev \
 && apt-get -y install git
 
 # Clone the Core wallet source from GitHub and checkout the version.
 RUN git clone https://github.com/MotoAcidic/eunowallet/
 
-# Prepare the build process
+# Prepare the build process with autgen and configure
 ARG rootdatadir=/data
 RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb --disable-wallet --without-gui --without-miniupnpc
 
-# Start the build process
+# Finsh the build process with the make
 RUN cd ${rootdatadir}/eunowallet && make
 
 # Delete source
