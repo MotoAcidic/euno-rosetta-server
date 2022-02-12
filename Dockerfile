@@ -37,7 +37,7 @@ RUN export CORES="" && [ $parallize_build -gt 1 ] && export CORES="-j $(nproc)";
 
 # Prepare the build process
 ARG rootdatadir=/data
-RUN cd ${rootdatadir}/eunopay && ./autogen.sh \
+RUN cd ${rootdatadir}/eunowallet && ./autogen.sh \
   && ./configure --without-gui --with-incompatible-bdb
 
 # Start the build process
