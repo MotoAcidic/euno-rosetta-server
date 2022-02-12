@@ -3,9 +3,10 @@ USER root
 WORKDIR /data
 
 ARG dgb_version=7.17.2
-DEBIAN_FRONTEND=noninteractive
+
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
+RUN DEBIAN_FRONTEND=noninteractive
 RUN apt update -y
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN apt install git -y
