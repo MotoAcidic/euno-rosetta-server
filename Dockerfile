@@ -7,7 +7,7 @@ ARG dgb_version=7.17.2
 # Update apt cache and set tzdata to non-interactive or it will fail later.
 # Also install essential dependencies for the build project.
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt update -y
+RUN apt update -y \
 && apt-get update && apt-get install -y --no-install-recommends apt-utils \
 && apt install git -y \
 && apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y \
