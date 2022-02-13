@@ -8,7 +8,7 @@ ARG euno_version=7.17.2
 # Install essential dependencies for the build project.
 RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y wget git build-essential libtool autotools-dev automake \
-  && apt-get install -y nodejs npm \
+  && apt-get install -y nodejs node-gyp npm \
   pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev \
   libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev \
   libdb-dev libdb++-dev && \
