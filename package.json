@@ -12,7 +12,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "rosetta-node-sdk": "git+https://github.com/MotoAcidic/EunoPay-rosetta-nodeapi.git",
+    "rosetta-node-sdk": "https://github.com/MotoAcidic/EunoPay-rosetta-nodeapi",
     "bitcore-lib": "^8.22.0",
     "bitcoind-rpc": "^0.8.1",
     "js-binary": "^1.2.0",
