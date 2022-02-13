@@ -6,9 +6,16 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG euno_version=7.17.2
 
 # Install essential dependencies for the build project.
-RUN apt-get update && apt-get -y upgrade -f \
-&& apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default libcurl4-openssl-dev bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
-&& apt-get -y install git
+RUN apt-get update && apt-get -y upgrade \
+  # && apt-get install -y wget git build-essential libtool autotools-dev automake \
+  # && apt-get install -y nodejs npm \
+  # pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev \
+  # libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev \
+  # libdb-dev libdb++-dev && \
+  # apt-get clean
+
+ && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
+ && apt-get -y install git
 
 # Clone the Core wallet source from GitHub and checkout the version.
 RUN git clone https://github.com/MotoAcidic/eunowallet/

@@ -88,13 +88,13 @@ if [ ! -d "$DATA_DIR" ]; then
     exit 1
 fi
 
-echo "EunoPay.conf contents"
-cat "${DATA_DIR}/EunoPay.conf"
+echo "eunopay.conf contents"
+cat "${DATA_DIR}/eunopay.conf"
 
 echo "Starting digibyted..."
 digibyted \
-    -conf="${DATA_DIR}/EunoPay.conf" \
-    -datadir="${DATA_DIR}/.EunoPay" 
+    -conf="${DATA_DIR}/eunopay.conf" \
+    -datadir="${DATA_DIR}/.eunopay" 
 
 sleep 2
 
