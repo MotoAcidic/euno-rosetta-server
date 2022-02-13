@@ -7,7 +7,7 @@ ARG euno_version=7.17.2
 
 # Install essential dependencies for the build project.
 RUN apt-get update && apt-get -y upgrade \
-&& apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default libcurl4-openssl-dev bsdmainutils openssl libssl-dev libzmq3-dev libgmp-dev nodejs npm \
+&& apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default libcurl4-openssl-dev bsdmainutils openssl nodejs-dev node-gyp libssl1.0-dev libzmq3-dev libgmp-dev npm \
 && apt-get -y install git
 
 # Clone the Core wallet source from GitHub and checkout the version.
