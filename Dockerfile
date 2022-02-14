@@ -9,6 +9,10 @@ ARG euno_version=7.17.2
 RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y wget git build-essential libtool autotools-dev automake \
   && apt-get install -y nodejs-dev node-gyp npm \
+  && npm install -g n \
+  && n latest \
+  && npm install -g npm \
+  && npm i \
   pkg-config libssl1.0-dev libevent-dev bsdmainutils python3 libgmp-dev \
   libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev libboost-iostreams-dev \
   libdb-dev libdb++-dev && \
