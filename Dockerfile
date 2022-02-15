@@ -41,7 +41,7 @@ RUN apt-get update && apt-get -y upgrade \
 RUN git clone https://github.com/MotoAcidic/eunowallet/
 
 # Prepare the build process with autgen and configure
-ARG rootdatadir=/data
+# ARG rootdatadir=/data
 RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb --without-gui
 
 # Finsh the build process with the make
