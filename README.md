@@ -30,6 +30,8 @@ git clone https://github.com/MotoAcidic/euno-rosetta-server.git
 # Other build args are documented in ./Dockerfile
 cd EunoPay-rosetta-server
 docker build -t euno/rosetta:latest --build-arg use_testnet=1 .
+or
+docker build -t euno/rosetta:latest .
 ```
 3. Start the docker container
 ```bash
@@ -38,7 +40,7 @@ docker build -t euno/rosetta:latest --build-arg use_testnet=1 .
 # Port 8080/tcp is the port of the rosetta api server.
 # Port 46465/tcp is the p2p testnet port.
 # If you are using mainnet, make sure you replace the port 46465 with 46463.
-docker run -p 46465:46465 -p 8080:8080 EunoPay/rosetta:latest
+docker run -p 46465:46465 -p 8080:8080 euno/rosetta:latest
 ```
 
 ## Test

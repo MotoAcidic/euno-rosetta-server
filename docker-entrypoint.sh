@@ -92,7 +92,7 @@ echo "eunopay.conf contents"
 cat "${DATA_DIR}/eunopay.conf"
 
 echo "Starting eunopayd..."
-digibyted \
+eunopayd \
     -conf="${DATA_DIR}/eunopay.conf" \
     -datadir="${DATA_DIR}/.eunopay" 
 
