@@ -9,7 +9,7 @@ set -e
 DATA_DIR="$ROOTDATADIR"
 NODE_DIR="$ROSETTADIR"
 
-wait_for_eunopayd()
+wait_for_eunod()
 {
     set +e
 
@@ -40,7 +40,7 @@ wait_for_eunopayd()
 
 simulate_mining() {
     # Mine to an address
-    node1="eunopay-cli -conf=${DATA_DIR}/eunopay.conf -datadir=${DATA_DIR}/.eunopay"
+    node1="euno-cli -conf=${DATA_DIR}/eunopay.conf -datadir=${DATA_DIR}/.eunopay"
 
     # Generate three addresses
     dgb_address1=`$node1 getnewaddress "" bech32`
@@ -91,14 +91,14 @@ fi
 echo "eunopay.conf contents"
 cat "${DATA_DIR}/eunopay.conf"
 
-echo "Starting eunopayd..."
-eunopayd \
+echo "Starting eunod..."
+eunod \
     -conf="${DATA_DIR}/eunopay.conf" \
     -datadir="${DATA_DIR}/.eunopay" 
 
 sleep 2
 
-echo "Waiting for eunopayd to be ready..."
+echo "Waiting for eunod to be ready..."
 wait_for_digibyted
 
 if [ ! -z "$REGTEST_SIMULATE_MINING" ] && [ "$REGTEST_SIMULATE_MINING" -eq 1 ]; then
