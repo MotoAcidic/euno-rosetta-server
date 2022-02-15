@@ -15,18 +15,18 @@ RUN apt-get update && apt-get -y upgrade \
   && npm i \
   && apt install -y libssl1.0-dev \
   && apt install -y libevent-dev \
-  && apt install -y bsdmainutil \
+  && apt-get install bsdmainutils \
   && add-apt-repository ppa:deadsnakes/ppa apt update python3.8 -y \
-  && apt install -y libgmp-dev \
-  && apt install -y libboost-system-dev \
-  && apt install -y libboost-filesystem-dev \
-  && apt install -y libboost-chrono-dev \
-  && apt install -y libboost-program-options-dev \
-  && apt install -y libboost-test-dev \
-  && apt install -y libboost-thread-dev \
-  && apt install -y libboost-iostreams-dev \
-  && apt install -y libdb-dev \
-  && apt install -y libdb++-dev \
+  && apt-get install -y libgmp-dev \
+  && apt-get install -y libboost-system-dev \
+  && apt-get install -y libboost-filesystem-dev \
+  && apt-get install -y libboost-chrono-dev \
+  && apt-get install -y libboost-program-options-dev \
+  && apt-get install -y libboost-test-dev \
+  && apt-get install -y libboost-thread-dev \
+  && apt-get install -y libboost-iostreams-dev \
+  && apt-get install -y libdb-dev \
+  && apt-get install -y libdb++-dev \
   && apt-get clean
 
  # && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
