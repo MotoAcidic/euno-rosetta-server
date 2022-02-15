@@ -16,7 +16,7 @@ RUN apt-get update && apt-get -y upgrade \
   && apt install -y libssl1.0-dev \
   && apt install -y libevent-dev \
   && apt-get install bsdmainutils \
-  && add-apt-repository ppa:deadsnakes/ppa apt update python3.8 -y \
+  && apt install software-properties-common add-apt-repository ppa:deadsnakes/ppa apt update python3.8 -y \
   && apt-get install -y libgmp-dev \
   && apt-get install -y libboost-system-dev \
   && apt-get install -y libboost-filesystem-dev \
