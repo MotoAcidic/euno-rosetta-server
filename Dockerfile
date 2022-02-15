@@ -29,14 +29,9 @@ RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y libdb++-dev \
   && apt-get clean
 
-RUN apt-get install -y software-properties-common \
-&& apt-get install -y python-software-properties \
-&& apt-add-repository ppa:fkrull/deadsnakes \
-&& apt-get update -y
-
-RUN apt-get install -y python3.4 \
-&& apt-get install -y python3.4-dev \
-&& apt-get install -y python3-pip
+RUN apt-get install -y python-software-properties \
+&& apt-get update -y \
+&& apt-get install -y python-software-properties
 
  # && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
  # && apt-get -y install git \
