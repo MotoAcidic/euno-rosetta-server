@@ -52,7 +52,7 @@ RUN cd ${rootdatadir}/eunowallet && make
 
 RUN mkdir -vp \
   "/root/rosetta-node" \
-  "${rootdatadir}/.eunopay" \
+  "${rootdatadir}/.euno" \
   "${rootdatadir}/utxodb" \
   "/tmp/npm_install"
 
@@ -122,7 +122,7 @@ ENV RUN_TESTS 1
 
 RUN if [ "$use_testnet" = "0" ] && [ "$use_regtest" = "0" ]; \
     then \
-      echo 'export RPC_PORT="14022"' >> ~/env; \
+      echo 'export RPC_PORT="46465"' >> ~/env; \
       echo 'export EUNO_NETWORK="livenet"' >> ~/env; \
     elif [ "$use_testnet" = "1" ] && [ "$use_regtest" = "0" ]; \
     then \
