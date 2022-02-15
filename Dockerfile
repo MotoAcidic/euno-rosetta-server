@@ -18,9 +18,9 @@ RUN apt-get update && apt-get -y upgrade \
   && apt install -y bsdmainutil \
   && add-apt-repository ppa:deadsnakes/ppa apt update python3.8 \
   && apt install libgmp-dev \
-  && libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev libboost-iostreams-dev \
-  && libdb-dev libdb++-dev && \
-  apt-get clean
+  && libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev libboost-iostreams-dev -y \
+  && libdb-dev libdb++-dev -y \
+  && apt-get clean
 
  # && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
  # && apt-get -y install git \
