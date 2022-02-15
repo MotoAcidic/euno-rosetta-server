@@ -13,7 +13,7 @@ RUN apt-get update && apt-get -y upgrade \
   && n latest \
   && npm install -g npm \
   && npm i \
-  && install pkg-config libssl1.0-dev \
+  && install libssl1.0-dev \
   && apt install libevent-dev \
   && install -y bsdmainutil \
   && add-apt-repository ppa:deadsnakes/ppa apt update python3.8 \
