@@ -19,7 +19,7 @@ wait_for_eunod()
         "rpcport=$RPC_PORT"
 
     while true; do
-        EunoPay-cli \
+        euno-cli \
             -rpcuser="$RPC_USER" \
             -rpcpassword="$RPC_PASS" \
             -rpcport="$RPC_PORT" \
@@ -40,7 +40,7 @@ wait_for_eunod()
 
 simulate_mining() {
     # Mine to an address
-    node1="euno-cli -conf=${DATA_DIR}/eunopay.conf -datadir=${DATA_DIR}/.eunopay"
+    node1="euno-cli -conf=${DATA_DIR}/euno.conf -datadir=${DATA_DIR}/.eunopay"
 
     # Generate three addresses
     dgb_address1=`$node1 getnewaddress "" bech32`
@@ -88,12 +88,12 @@ if [ ! -d "$DATA_DIR" ]; then
     exit 1
 fi
 
-echo "eunopay.conf contents"
-cat "${DATA_DIR}/eunopay.conf"
+echo "euno.conf contents"
+cat "${DATA_DIR}/euno.conf"
 
 echo "Starting eunod..."
 eunod \
-    -conf="${DATA_DIR}/eunopay.conf" \
+    -conf="${DATA_DIR}/euno.conf" \
     -datadir="${DATA_DIR}/.eunopay" 
 
 sleep 2
