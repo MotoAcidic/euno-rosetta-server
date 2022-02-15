@@ -52,7 +52,7 @@ RUN cd ${rootdatadir}/eunowallet && make
 
 RUN mkdir -vp \
   "/root/rosetta-node" \
-  "${rootdatadir}.eunopay" \
+  "${rootdatadir}/.eunopay" \
   "${rootdatadir}/utxodb" \
   "/tmp/npm_install"
 
