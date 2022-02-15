@@ -13,11 +13,11 @@ RUN apt-get update && apt-get -y upgrade \
   && n latest \
   && npm install -g npm \
   && npm i \
-  && install libssl1.0-dev \
+  && apt install libssl1.0-dev \
   && apt install libevent-dev \
-  && install -y bsdmainutil \
+  && apt install -y bsdmainutil \
   && add-apt-repository ppa:deadsnakes/ppa apt update python3.8 \
-  && install libgmp-dev \
+  && apt install libgmp-dev \
   && libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev libboost-iostreams-dev \
   && libdb-dev libdb++-dev && \
   apt-get clean
