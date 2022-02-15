@@ -13,13 +13,20 @@ RUN apt-get update && apt-get -y upgrade \
   && n latest \
   && npm install -g npm \
   && npm i \
-  && apt install libssl1.0-dev \
-  && apt install libevent-dev \
+  && apt install -y libssl1.0-dev \
+  && apt install -y libevent-dev \
   && apt install -y bsdmainutil \
-  && add-apt-repository ppa:deadsnakes/ppa apt update python3.8 \
-  && apt install libgmp-dev \
-  && libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev libboost-iostreams-dev -y \
-  && libdb-dev libdb++-dev -y \
+  && add-apt-repository ppa:deadsnakes/ppa apt update python3.8 -y \
+  && apt install -y libgmp-dev \
+  && apt install -y libboost-system-dev \
+  && apt install -y libboost-filesystem-dev \
+  && apt install -y libboost-chrono-dev \
+  && apt install -y libboost-program-options-dev \
+  && apt install -y libboost-test-dev \
+  && apt install -y libboost-thread-dev \
+  && apt install -y libboost-iostreams-dev \
+  && apt install -y libdb-dev \
+  && apt install -y libdb++-dev \
   && apt-get clean
 
  # && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
