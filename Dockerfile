@@ -16,7 +16,6 @@ RUN apt-get update && apt-get -y upgrade \
   && apt install -y libssl1.0-dev \
   && apt install -y libevent-dev \
   && apt-get install bsdmainutils \
-  && apt install software-properties-common add-apt-repository ppa:deadsnakes/ppa apt update python3.8 -y \
   && apt-get install -y libgmp-dev \
   && apt-get install -y libboost-system-dev \
   && apt-get install -y libboost-filesystem-dev \
@@ -28,6 +27,15 @@ RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y libdb-dev \
   && apt-get install -y libdb++-dev \
   && apt-get clean
+
+RUN apt-get install -y software-properties-common
+RUN apt-get install -y python-software-properties
+RUN apt-add-repository ppa:fkrull/deadsnakes
+RUN apt-get update -y
+
+RUN apt-get install -y python3.4
+RUN apt-get install -y python3.4-dev
+RUN apt-get install -y python3-pip
 
  # && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
  # && apt-get -y install git \
