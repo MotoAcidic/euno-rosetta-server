@@ -16,6 +16,7 @@ RUN apt-get update && apt-get -y upgrade \
   && apt install -y libssl1.0-dev \
   && apt install -y libevent-dev \
   && apt-get install bsdmainutils \
+  && apt-get install -y apt-utils \
   && apt-get install -y libgmp-dev \
   && apt-get install -y libboost-system-dev \
   && apt-get install -y libboost-filesystem-dev \
@@ -26,10 +27,9 @@ RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y libboost-iostreams-dev \
   && apt-get install -y libdb-dev \
   && apt-get install -y libdb++-dev \
-  && apt-get install apt-utils \
   && apt-get clean
 
-RUN apt-get install software-properties-common \
+RUN apt-get install -y software-properties-common \
 && apt-get install -y python-software-properties \
 && apt-add-repository ppa:fkrull/deadsnakes \
 && apt-get update -y
