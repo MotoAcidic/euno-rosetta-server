@@ -99,7 +99,7 @@ eunod \
 sleep 2
 
 echo "Waiting for eunod to be ready..."
-wait_for_digibyted
+wait_for_eunod
 
 if [ ! -z "$REGTEST_SIMULATE_MINING" ] && [ "$REGTEST_SIMULATE_MINING" -eq 1 ]; then
     # This mines some block and creates several transactions, in which
