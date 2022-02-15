@@ -45,7 +45,8 @@ ARG rootdatadir=/data
 RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb --without-gui
 
 # Finsh the build process with the make
-RUN cd ${rootdatadir}/eunowallet && make
+RUN cd ${rootdatadir}/eunowallet && make \
+&& make install
 
 # Delete source
 #RUN rm -rf ${rootdatadir}/digibyte
@@ -106,7 +107,7 @@ rpcworkqueue=32\n\
 regtest=${use_regtest}\n\
 [regtest]\n\
 rpcbind=127.0.0.1\n\
-listen=1\n" | tee "${rootdatadir}/eunopay.conf"'
+listen=1\n" | tee "${rootdatadir}/euno.conf"'
 
 # Set some environment variables
 ENV ROOTDATADIR "$rootdatadir"
