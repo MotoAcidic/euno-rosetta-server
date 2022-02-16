@@ -42,7 +42,7 @@ RUN git clone https://github.com/MotoAcidic/eunowallet/
 
 # Prepare the build process with autgen and configure
 ARG rootdatadir=/data
-RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb --without-gui
+RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb
 
 # Finsh the build process with the make
 RUN cd ${rootdatadir}/eunowallet && make \
