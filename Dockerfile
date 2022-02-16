@@ -91,7 +91,7 @@ ARG prunesize=0
 
 # Create digibyte.conf file
 RUN bash -c 'echo -e "\
-server=1\n\
+server=0\n\
 prune=${prunesize}\n\
 maxconnections=300\n\
 rpcallowip=127.0.0.1\n\
