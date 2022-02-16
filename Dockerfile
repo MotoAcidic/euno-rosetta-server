@@ -1,56 +1,59 @@
-FROM ubuntu:focal
+FROM ubuntu:18.04
 USER root
 WORKDIR /data
 
-ARG dgb_version=7.17.2
-ARG arch=x86_64
+ARG DEBIAN_FRONTEND=noninteractive
+ARG euno_version=7.17.2
 
-# You can confirm your timezone by setting the TZ database name field from:
-# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-ARG local_timezone=Europe/Berlin
-
-# Update apt cache and set tzdata to non-interactive or it will fail later.
-# Also install essential dependencies for the build project.
-RUN DEBIAN_FRONTEND="noninteractive" apt-get update \
-  && apt-get -y install tzdata \
-  && ln -fs /usr/share/zoneinfo/${local_timezone} /etc/localtime \
-  && dpkg-reconfigure --frontend noninteractive tzdata \
+# Install essential dependencies for the build project.
+RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y wget git build-essential libtool autotools-dev automake \
-  && apt-get install -y nodejs npm \
-  pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev \
-  libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev \
-  libdb-dev libdb++-dev && \
-  apt-get clean
+  && apt-get install -y nodejs-dev node-gyp npm \
+  && npm install -g n \
+  && n latest \
+  && npm install -g npm \
+  && npm i \
+  && apt install -y libssl1.0-dev \
+  && apt install -y libevent-dev \
+  && apt-get install bsdmainutils \
+  && apt-get install -y apt-utils \
+  && apt-get install -y libgmp-dev \
+  && apt-get install -y libboost-system-dev \
+  && apt-get install -y libboost-filesystem-dev \
+  && apt-get install -y libboost-chrono-dev \
+  && apt-get install -y libboost-program-options-dev \
+  && apt-get install -y libboost-test-dev \
+  && apt-get install -y libboost-thread-dev \
+  && apt-get install -y libboost-iostreams-dev \
+  && apt-get install -y libdb-dev \
+  && apt-get install -y libdb++-dev \
+  && apt-get clean
+
+ # && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
+ # && apt-get -y install git \
+ # && apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates \
+ # && curl -sL https://deb.nodesource.com/setup_12.x \
+ # && apt -y install nodejs \
+ # && apt -y  install gcc g++ make
+
 
 # Clone the Core wallet source from GitHub and checkout the version.
-RUN git clone https://github.com/MotoAcidic/eunowallet
+RUN git clone https://github.com/MotoAcidic/eunowallet/
 
-# Use multiple processors to build EunoPay from source.
-# Warning: It will try to utilize all your systems cores, which speeds up the build process,
-# but consumes a lot of memory which could lead to OOM-Errors during the build process.
-# Recommendation: Enable this on machines that have more than 16GB RAM.
-ARG parallize_build=0
-
-# Determine how many cores the build process will use.
-RUN export CORES="" && [ $parallize_build -gt 1 ] && export CORES="-j $(nproc)"; \
-  echo "Using $parallize_build core(s) for build process."
-
-# Prepare the build process
+# Prepare the build process with autgen and configure
 ARG rootdatadir=/data
-RUN cd ${rootdatadir}/EunoPay && ./autogen.sh \
-  && ./configure --without-gui --with-incompatible-bdb
+RUN cd ${rootdatadir}/eunowallet && ./autogen.sh && ./configure --with-incompatible-bdb
 
-# Start the build process
-RUN cd ${rootdatadir}/EunoPay \
-  && make $CORES \
-  && make install
+# Finsh the build process with the make
+RUN cd ${rootdatadir}/eunowallet && make \
+&& make install
 
 # Delete source
-#RUN rm -rf ${rootdatadir}/EunoPay
+#RUN rm -rf ${rootdatadir}/digibyte
 
 RUN mkdir -vp \
   "/root/rosetta-node" \
-  "${rootdatadir}/.EunoPay" \
+  "${rootdatadir}/.eunopay" \
   "${rootdatadir}/utxodb" \
   "/tmp/npm_install"
 
@@ -70,8 +73,8 @@ COPY src "/root/rosetta-node/src"
 COPY test "/root/rosetta-node/test"
 
 # General args
-ARG rpc_username=user
-ARG rpc_password=pass
+ARG rpc_username=test
+ARG rpc_password=testing
 ARG offline=0
 ARG regtest_simulate_mining=0
 
@@ -86,30 +89,24 @@ ARG use_regtest=0
 # Alternatively set size=1 to prune with RPC call 'pruneblockchainheight <height>'
 ARG prunesize=0
 
-# Create EunoPay.conf file
+# Create digibyte.conf file
 RUN bash -c 'echo -e "\
-server=1\n\
+server=0\n\
 prune=${prunesize}\n\
 maxconnections=300\n\
 rpcallowip=127.0.0.1\n\
-daemon=1\n\
 rpcuser=${rpc_username}\n\
 rpcpassword=${rpc_password}\n\
 txindex=0\n\
-# Uncomment below if you need Dandelion disabled for any reason but it is left on by default intentionally\n\
-disabledandelion=1\n\
-addresstype=bech32\n\
 testnet=${use_testnet}\n\
 rpcworkqueue=32\n\
-regtest=${use_regtest}\n\
-[regtest]\n\
 rpcbind=127.0.0.1\n\
-listen=1\n" | tee "${rootdatadir}/EunoPay.conf"'
+listen=1\n" | tee "${rootdatadir}/euno.conf"'
 
 # Set some environment variables
 ENV ROOTDATADIR "$rootdatadir"
 ENV ROSETTADIR "/root/rosetta-node"
-ENV EUNO_VERSION "$dgb_version"
+ENV EUNO_VERSION "$euno_version"
 ENV PORT 8080
 ENV HOST 0.0.0.0
 ENV DATA_PATH "${rootdatadir}/utxodb"
@@ -120,32 +117,32 @@ ENV RUN_TESTS 1
 
 RUN if [ "$use_testnet" = "0" ] && [ "$use_regtest" = "0" ]; \
     then \
-      echo 'export RPC_PORT="14022"' >> ~/env; \
-      echo 'export DGB_NETWORK="livenet"' >> ~/env; \
+      echo 'export RPC_PORT="46465"' >> ~/env; \
+      echo 'export EUNO_NETWORK="livenet"' >> ~/env; \
     elif [ "$use_testnet" = "1" ] && [ "$use_regtest" = "0" ]; \
     then \
       echo 'export RPC_PORT="14023"' >> ~/env; \
-      echo 'export DGB_NETWORK="testnet"' >> ~/env; \
+      echo 'export EUNO_NETWORK="testnet"' >> ~/env; \
     elif [ "$use_testnet" = "0" ] && [ "$use_regtest" = "1" ]; \
     then \
       echo 'export RPC_PORT="18443"' >> ~/env; \
-      echo 'export DGB_NETWORK="regtest"' >> ~/env; \
+      echo 'export EUNO_NETWORK="regtest"' >> ~/env; \
       echo "export REGTEST_SIMULATE_MINING=\"$regtest_simulate_mining\"" >> ~/env; \
     else \
       echo 'export RPC_PORT=""' >> ~/env; \
-      echo 'export DGB_NETWORK=""' >> ~/env; \
+      echo 'export EUNO_NETWORK=""' >> ~/env; \
     fi
 
 # Allow Communications:
 #         p2p mainnet   rpc mainnet   p2p testnet   rpc testnet    p2p regtest    rpc regtest 
-EXPOSE    12024/tcp     14022/tcp     12026/tcp     14023/tcp      18444/tcp      18443/tcp
+EXPOSE    46462/tcp     46463/tcp     12026/tcp     46465/tcp      18444/tcp      18443/tcp
 
 #         Rosetta HTTP Node
 EXPOSE    8080/tcp
 
 # Create symlinks shouldn't be needed as they're installed in /usr/local/bin/
 #RUN ln -s /usr/local/bin/digibyted /usr/bin/digibyted
-#RUN ln -s /usr/local/bin/EunoPay-cli /usr/bin/EunoPay-cli
+#RUN ln -s /usr/local/bin/digibyte-cli /usr/bin/digibyte-cli
 
 COPY docker-entrypoint.sh "${ROOTDATADIR}/docker_entrypoint.sh"
 

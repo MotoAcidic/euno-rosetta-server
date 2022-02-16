@@ -5,9 +5,9 @@
 
 ### Components
 - `BlockCache`: Caches up to 250 blocks that were received through the rpc interface. [syncBlockCache.js](../src/syncBlockCache.js) is a singleton instance for the Blockcache
-- `RosettaSDK::Syncer`: A `Syncer` class instance of the Rosetta Node SDK. Check this out: [RosettaNodeSDK/index.js](https://github.com/MotoAcidic/EunoPay-rosetta-nodeapi/tree/1.4.1/lib/syncer)
+- `RosettaSDK::Syncer`: A `Syncer` class instance of the Rosetta Node SDK. Check this out: [RosettaNodeSDK/index.js](https://github.com/MotoAcidic/EunoPay-rosetta-nodeapi/lib/syncer)
 - `Handlers`: Implementations of endpoint handlers following the Rosetta Specification. The official rosetta spec can be viewed here: [Data API - Overview](https://www.rosetta-api.org/docs/data_api_introduction.html)
-- `RosettaSDK::Server`: A `Server` class instance of the Rosetta Node SDK. The class can be viewed [here](https://github.com/MotoAcidic/EunoPay-rosetta-nodeapi/blob/1.4.1/lib/server/index.js). For each endpoint a handler must be registered as seen [here](https://github.com/MotoAcidic/EunoPay-rosetta-server/blob/077a5b8ba5f72043c6a34209c80614df1e260489/index.js#L60)
+- `RosettaSDK::Server`: A `Server` class instance of the Rosetta Node SDK. The class can be viewed [here](https://github.com/MotoAcidic/EunoPay-rosetta-nodeapi/lib/server/index.js). For each endpoint a handler must be registered as seen [here](https://github.com/MotoAcidic/EunoPay-rosetta-server/blob/077a5b8ba5f72043c6a34209c80614df1e260489/index.js#L60)
 - `EunoPay Core Node`: Official EunoPay Core Node
 - `UTXO Indexer`: Parses the blocks that were received via the RPC interface. Extracts and indexes UTXOs and addresses. Writes its indexed data into the `UTXO Database`
 - `UTXO Database`: A `LevelDB` KV instance with logical prefix keys ([shown here](https://github.com/MotoAcidic/EunoPay-rosetta-server/blob/077a5b8ba5f72043c6a34209c80614df1e260489/src/Indexer.js#L41)). All written data, consisting of keys and values, is using compressed binary encoding in order to save a lot of space. For every block, transaction identifier and address there exists a symbol, that is represented with an integer, resulting in a very small database size.

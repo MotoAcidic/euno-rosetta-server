@@ -9,7 +9,7 @@ set -e
 DATA_DIR="$ROOTDATADIR"
 NODE_DIR="$ROSETTADIR"
 
-wait_for_digibyted()
+wait_for_eunod()
 {
     set +e
 
@@ -19,7 +19,7 @@ wait_for_digibyted()
         "rpcport=$RPC_PORT"
 
     while true; do
-        EunoPay-cli \
+        euno-cli \
             -rpcuser="$RPC_USER" \
             -rpcpassword="$RPC_PASS" \
             -rpcport="$RPC_PORT" \
@@ -40,28 +40,28 @@ wait_for_digibyted()
 
 simulate_mining() {
     # Mine to an address
-    node1="EunoPay-cli -conf=${DATA_DIR}/EunoPay.conf -datadir=${DATA_DIR}/.EunoPay"
+    node1="euno-cli -conf=${DATA_DIR}/euno.conf -datadir=${DATA_DIR}/.eunopay"
 
     # Generate three addresses
     dgb_address1=`$node1 getnewaddress "" bech32`
     dgb_address2=`$node1 getnewaddress "" bech32`
     dgb_address3=`$node1 getnewaddress "" bech32`
-    private_key1=`$node1 dumpprivkey "$dgb_address1"`
-    private_key2=`$node1 dumpprivkey "$dgb_address2"`
-    private_key3=`$node1 dumpprivkey "$dgb_address3"`    
+    private_key1=`$node1 dumpprivkey "$euno_address1"`
+    private_key2=`$node1 dumpprivkey "$euno_address2"`
+    private_key3=`$node1 dumpprivkey "$euno_address3"`    
 
-    echo "PUBLIC_ADDRESS_1:  $dgb_address1"
-    echo "PUBLIC_ADDRESS_2:  $dgb_address2"
+    echo "PUBLIC_ADDRESS_1:  $euno_address1"
+    echo "PUBLIC_ADDRESS_2:  $euno_address2"
     echo "PRIVATE_KEY_1:     $private_key1"
     echo "PRIVATE_KEY_2:     $private_key2"
 
     # Generate 101 blocks
-    hashes=`$node1 generatetoaddress 101 $dgb_address1`
+    hashes=`$node1 generatetoaddress 101 $euno_address1`
     spendable=72000
 
     # Send some EUNO to another address
     send=$(($spendable - 100))
-    txid=`$node1 sendtoaddress $dgb_address2 $send`
+    txid=`$node1 sendtoaddress $euno_address2 $send`
 
     # Change to false in order to reproduce the
     # bug mentioned in `Bug.md`.
@@ -72,14 +72,14 @@ simulate_mining() {
         
         # Send More than 72000 to a third address.
         # This transaction requires a utxo from dgb_address2
-        txid=`$node1 sendtoaddress $dgb_address3 $(($spendable + 10000))`
+        txid=`$node1 sendtoaddress $euno_address3 $(($spendable + 10000))`
         $node1 generate 1 
     else
-        hash=`$node1 generatetoaddress 1 "$dgb_address1" | tr -d '["] '`
+        hash=`$node1 generatetoaddress 1 "$euno_address1" | tr -d '["] '`
         $node1 getblock $hash 2
 
-        txid=`$node1 sendtoaddress $dgb_address3 $(($spendable + 10000))`
-        hash=`$node1 generatetoaddress 1 "$dgb_address1" | tr -d '["] '`
+        txid=`$node1 sendtoaddress $euno_address3 $(($spendable + 10000))`
+        hash=`$node1 generatetoaddress 1 "$euno_address1" | tr -d '["] '`
     fi
 }
 
@@ -88,18 +88,18 @@ if [ ! -d "$DATA_DIR" ]; then
     exit 1
 fi
 
-echo "EunoPay.conf contents"
-cat "${DATA_DIR}/EunoPay.conf"
+echo "euno.conf contents"
+cat "${DATA_DIR}/euno.conf"
 
-echo "Starting digibyted..."
-digibyted \
-    -conf="${DATA_DIR}/EunoPay.conf" \
-    -datadir="${DATA_DIR}/.EunoPay" 
+echo "Starting eunod..."
+eunod \
+    -conf="${DATA_DIR}/euno.conf" \
+    -datadir="${DATA_DIR}/.eunopay" 
 
 sleep 2
 
-echo "Waiting for digibyted to be ready..."
-wait_for_digibyted
+echo "Waiting for eunod to be ready..."
+wait_for_eunod
 
 if [ ! -z "$REGTEST_SIMULATE_MINING" ] && [ "$REGTEST_SIMULATE_MINING" -eq 1 ]; then
     # This mines some block and creates several transactions, in which

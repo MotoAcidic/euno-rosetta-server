@@ -12,7 +12,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "rosetta-node-sdk": "git+https://github.com/MotoAcidic/EunoPay-rosetta-nodeapi.git#1.4.1",
+    "rosetta-node-sdk": "git+https://github.com/SmartArray/digibyte-rosetta-nodeapi.git#1.4.1",
     "bitcore-lib": "^8.22.0",
     "bitcoind-rpc": "^0.8.1",
     "js-binary": "^1.2.0",
@@ -22,7 +22,7 @@
   "keywords": [
     "rosetta",
     "coinbase",
-    "EunoPay",
+    "digibyte",
     "server"
   ],
   "author": "yoshijaeger",
