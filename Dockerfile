@@ -73,8 +73,8 @@ COPY src "/root/rosetta-node/src"
 COPY test "/root/rosetta-node/test"
 
 # General args
-ARG rpc_username=user
-ARG rpc_password=pass
+ARG rpc_username=test
+ARG rpc_password=testing
 ARG offline=0
 ARG regtest_simulate_mining=0
 
