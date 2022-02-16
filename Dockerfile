@@ -91,21 +91,15 @@ ARG prunesize=0
 
 # Create digibyte.conf file
 RUN bash -c 'echo -e "\
-server=0\n\
+server=1\n\
 prune=${prunesize}\n\
 maxconnections=300\n\
 rpcallowip=127.0.0.1\n\
-daemon=1\n\
 rpcuser=${rpc_username}\n\
 rpcpassword=${rpc_password}\n\
 txindex=0\n\
-# Uncomment below if you need Dandelion disabled for any reason but it is left on by default intentionally\n\
-disabledandelion=1\n\
-addresstype=bech32\n\
 testnet=${use_testnet}\n\
 rpcworkqueue=32\n\
-regtest=${use_regtest}\n\
-[regtest]\n\
 rpcbind=127.0.0.1\n\
 listen=1\n" | tee "${rootdatadir}/euno.conf"'
 
