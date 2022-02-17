@@ -48,9 +48,6 @@ RUN cd ${rootdatadir}/eunowallet && make \
 # Delete source
 #RUN rm -rf ${rootdatadir}/digibyte
 
-# Install npm
-RUN npm install
-
 # Copy everything over
 RUN mkdir -vp \
   "/root/rosetta-node" \
