@@ -65,7 +65,7 @@ config.syncer = {
 };
 
 if (!config.rosettaVersion) throw new Error('RosettaVersion not defined');
-if (!config.eunoVersion) throw new Error('EUNO_VERSION not set');
+//if (!config.eunoVersion) throw new Error('EUNO_VERSION not set');
 if (!config.rpc.rpc_port) throw new Error('RPC_PORT not set');
 if (!config.rpc.rpc_user) throw new Error('RPC_USER not set');
 if (!config.rpc.rpc_pass) throw new Error('RPC_PASS not set');
