@@ -35,8 +35,8 @@ This configuration was used in order to validate the Data API:
 which resulted in the following output:
 
 ```
-master@digiassetsd:~/rosetta$ ./bin/rosetta-cli check:data --configuration-file dgb.conf 
-loaded configuration file: dgb.conf
+master@digiassetsd:~/rosetta$ ./bin/rosetta-cli check:data --configuration-file euno.conf 
+loaded configuration file: euno.conf
 2020/09/08 11:52:09 Loading previously seen accounts (this could take a while)...
 Initialized reconciler with 0 previously seen accounts
 2020/09/08 11:52:09 Syncing 0-2500

@@ -43,9 +43,9 @@ simulate_mining() {
     node1="euno-cli -conf=${DATA_DIR}/euno.conf -datadir=${DATA_DIR}/.eunopay"
 
     # Generate three addresses
-    dgb_address1=`$node1 getnewaddress "" bech32`
-    dgb_address2=`$node1 getnewaddress "" bech32`
-    dgb_address3=`$node1 getnewaddress "" bech32`
+    euno_address1=`$node1 getnewaddress "" bech32`
+    euno_address2=`$node1 getnewaddress "" bech32`
+    euno_address3=`$node1 getnewaddress "" bech32`
     private_key1=`$node1 dumpprivkey "$euno_address1"`
     private_key2=`$node1 dumpprivkey "$euno_address2"`
     private_key3=`$node1 dumpprivkey "$euno_address3"`    
@@ -71,7 +71,7 @@ simulate_mining() {
         $node1 generate 1
         
         # Send More than 72000 to a third address.
-        # This transaction requires a utxo from dgb_address2
+        # This transaction requires a utxo from euno_address2
         txid=`$node1 sendtoaddress $euno_address3 $(($spendable + 10000))`
         $node1 generate 1 
     else

@@ -7,7 +7,7 @@ As of 05. September, 2020 this address contains 399195 transactions. Fairly a lo
 
 The following `curl` command may take several seconds
 ```bash
-curl -X POST -H 'Content-Type: application/json' -d '{ "network_identifier": { "blockchain": "dgb", "network": "mainnet" }, "account_identifier": { "address": "DCzmzkMBqEz2tLn47W9YuNAV9cFzuWCydW" }}' http://127.0.0.1:8080/account/balance
+curl -X POST -H 'Content-Type: application/json' -d '{ "network_identifier": { "blockchain": "EUNO", "network": "mainnet" }, "account_identifier": { "address": "DCzmzkMBqEz2tLn47W9YuNAV9cFzuWCydW" }}' http://127.0.0.1:8080/account/balance
 ```
 
 and yields this output:

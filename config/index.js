@@ -11,7 +11,7 @@ const DEFAULT_RPC_HOST = 'localhost';
 const DEFAULT_RPC_PROTO = 'http';
 const DEFAULT_LISTENING_PORT = 8080;
 const DEFAULT_DATA_PATH = './data';
-const DEFAULT_DGB_NETWORK = 'mainnet';
+const DEFAULT_EUNO_NETWORK = 'mainnet';
   
 /**
  * syncerSecret is used by the Indexer in order to request blocks from 
@@ -46,7 +46,7 @@ const config = {
     rpc_proto: process.env.RPC_PROTO || DEFAULT_RPC_PROTO,
   },
 
-  network: process.env.DGB_NETWORK || DEFAULT_DGB_NETWORK,
+  network: process.env.EUNO_NETWORK || DEFAULT_EUNO_NETWORK,
   syncer: {},
   serverConfig,
 };
