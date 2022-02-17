@@ -36,7 +36,7 @@ console.log(`
 
              Version                  ${Config.version}
              Rosetta Version          ${Config.rosettaVersion}
-             EunoPay Node Version    ${Config.digibyteVersion}
+             EunoPay Node Version    ${Config.eunoVersion}
              Networks                 ${JSON.stringify(Config.serverConfig.networkIdentifiers)}
              Port                     ${Config.port}
 `);

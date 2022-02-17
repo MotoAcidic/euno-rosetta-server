@@ -60,7 +60,7 @@ const networkOptions = async (params) => {
 
   const version = new Types.Version(
     Config.rosettaVersion,
-    Config.digibyteVersion,
+    Config.eunoVersion,
   );
 
   const allow = new Types.Allow(
