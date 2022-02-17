@@ -9,7 +9,7 @@ This configuration was used in order to validate the Data API:
   "blockchain": "EunoPay",
   "network": "livenet"
  },
- "online_url": "http://localhost:8080",
+ "online_url": "http://localhost:80",
  "data_directory": "EunoPay-rosetta-server/data",
  "http_timeout": 10,
  "sync_concurrency": 8,

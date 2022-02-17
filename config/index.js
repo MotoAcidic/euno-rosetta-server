@@ -9,7 +9,7 @@ const DEFAULT_RPC_USER = 'user';
 const DEFAULT_RPC_PASS = 'pass';
 const DEFAULT_RPC_HOST = 'localhost';
 const DEFAULT_RPC_PROTO = 'http';
-const DEFAULT_LISTENING_PORT = 8080;
+const DEFAULT_LISTENING_PORT = 80;
 const DEFAULT_DATA_PATH = './data';
 const DEFAULT_EUNO_NETWORK = 'mainnet';
   

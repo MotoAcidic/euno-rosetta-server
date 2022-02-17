@@ -136,8 +136,8 @@ RUN if [ "$use_testnet" = "0" ] && [ "$use_regtest" = "0" ]; \
 #         p2p mainnet   rpc mainnet   p2p testnet   rpc testnet    p2p regtest    rpc regtest 
 EXPOSE    46462/tcp     46463/tcp     12026/tcp     46465/tcp      18444/tcp      18443/tcp
 
-#         Rosetta HTTP Node
-EXPOSE    8080/tcp
+#         Rosetta HTTP Node  Base 80 port
+EXPOSE    8080/tcp           80/tcp
 
 # Create symlinks shouldn't be needed as they're installed in /usr/local/bin/
 #RUN ln -s /usr/local/bin/digibyted /usr/bin/digibyted
