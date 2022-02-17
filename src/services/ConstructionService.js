@@ -28,7 +28,7 @@ const {
   Transaction,
 } = require('bitcore-lib');
 
-const Config = require('../../config');
+const Config = require('../../config/index');
 const CustomNetworks = require('../CustomNetworks');
 const Network = CustomNetworks[Config.network];
 
