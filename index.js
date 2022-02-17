@@ -21,7 +21,7 @@
 
 const RosettaSDK = require('rosetta-node-sdk');
 
-const Config = require('./config');
+const Config = require('./config/index');
 const ServiceHandlers = require('./src/services');
 const EunoPaySyncer = require('./src/EunoPaySyncer');
 const EunoPayIndexer = require('./src/EunoPayIndexer');
@@ -36,7 +36,7 @@ console.log(`
 
              Version                  ${Config.version}
              Rosetta Version          ${Config.rosettaVersion}
-             EunoPay Node Version    ${Config.eunoVersion}
+             EunoPay Node Version     ${Config.eunoVersion}
              Networks                 ${JSON.stringify(Config.serverConfig.networkIdentifiers)}
              Port                     ${Config.port}
 `);
