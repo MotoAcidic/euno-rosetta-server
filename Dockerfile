@@ -3,7 +3,10 @@ USER root
 WORKDIR /data
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG euno_version=7.17.2
+ARG euno_version=2.2.0
+
+# Lets make sure our nameservers can communicate back to google dns
+RUN echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 
 # Install essential dependencies for the build project.
 RUN apt-get update && apt-get -y upgrade \
@@ -30,14 +33,6 @@ RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y python3 \
   && apt-get install -y curl \
   && apt-get clean
-
- # && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
- # && apt-get -y install git \
- # && apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates \
- # && curl -sL https://deb.nodesource.com/setup_12.x \
- # && apt -y install nodejs \
- # && apt -y  install gcc g++ make
-
 
 # Clone the Core wallet source from GitHub and checkout the version.
 RUN git clone https://github.com/MotoAcidic/eunowallet/
