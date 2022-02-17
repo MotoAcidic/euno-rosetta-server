@@ -9,7 +9,9 @@ ARG euno_version=2.2.0
 # RUN echo "nameserver 8.8.8.8" |sudo tee /etc/resolv.conf > /dev/null
 
 # Install essential dependencies for the build project.
-RUN apt-get update && apt-get -y upgrade \
+RUN apt-get -qq update \
+  && apt-get -qq -y install curl \
+  && apt-get -y upgrade \
   && apt-get install -y wget git build-essential libtool autotools-dev automake \
   && apt-get install -y nodejs-dev node-gyp npm \
   && npm install -g n \
@@ -31,7 +33,6 @@ RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y libdb-dev \
   && apt-get install -y libdb++-dev \
   && apt-get install -y python3 \
-  && apt-get install -y curl \
   && apt-get clean
 
 # Clone the Core wallet source from GitHub and checkout the version.
