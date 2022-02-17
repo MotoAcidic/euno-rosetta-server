@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG euno_version=2.2.0
 
 # Lets make sure our nameservers can communicate back to google dns
-RUN echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+# RUN echo "nameserver 8.8.8.8" |sudo tee /etc/resolv.conf > /dev/null
 
 # Install essential dependencies for the build project.
 RUN apt-get update && apt-get -y upgrade \
