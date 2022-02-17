@@ -1,8 +1,6 @@
 FROM ubuntu:18.04
 USER root
 WORKDIR /data
-EXPOSE 8080
-EXPOSE 80
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG euno_version=7.17.2
@@ -29,6 +27,8 @@ RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y libboost-iostreams-dev \
   && apt-get install -y libdb-dev \
   && apt-get install -y libdb++-dev \
+  && apt-get install -y python3 \
+  && apt-get install -y curl \
   && apt-get clean
 
  # && apt-get install -y git unzip build-essential libdb++-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libevent-dev autogen automake libtool libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qt5-default bsdmainutils openssl libssl1.0-dev libzmq3-dev libgmp-dev nodejs-dev node-gyp npm \
