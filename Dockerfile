@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
 USER root
 WORKDIR /data
+EXPOSE 8080
+EXPOSE 80
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG euno_version=7.17.2
