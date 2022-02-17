@@ -22,7 +22,7 @@
 const RosettaSDK = require('rosetta-node-sdk');
 const Errors = require('../../config/errors');
 const config = require('../../config');
-const EunoPayIndexer = require('../EunoPayIndexer');
+const EunoPayIndexer = require('../eunopayIndexer');
 const rpc = require('../rpc');
 
 const Types = RosettaSDK.Client;

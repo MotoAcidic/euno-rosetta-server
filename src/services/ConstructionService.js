@@ -34,7 +34,7 @@ const Network = CustomNetworks[Config.network];
 
 const rpc = require('../rpc');
 const Errors = require('../../config/errors');
-const EunoPayIndexer = require('../EunoPayIndexer');
+const EunoPayIndexer = require('../eunopayIndexer');
 
 const Types = RosettaSDK.Client;
 

@@ -4,7 +4,7 @@ const Types = RosettaSDK.Client;
 
 const Config = require('../config');
 const Constants = require('./constants');
-const EunoPayIndexer = require('./EunoPayIndexer');
+const EunoPayIndexer = require('./eunopayIndexer');
 
 const OperationTypes = Config.serverConfig.operationTypes;
 const OperationStatus = Config.serverConfig.operationStatuses;

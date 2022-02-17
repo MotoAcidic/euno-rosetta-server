@@ -29,7 +29,7 @@ const Config = require('../../config');
 const Errors = require('../../config/errors');
 
 const SyncBlockCache = require('../syncBlockCache');
-const EunoPayIndexer = require('../EunoPayIndexer');
+const EunoPayIndexer = require('../eunopayIndexer');
 
 /* Data API: Block */
 

@@ -3,8 +3,8 @@ const axios = require('axios');
 const RosettaSDK = require('rosetta-node-sdk');
 
 const ServiceHandlers = require('../../../src/services');
-const EunoPaySyncer = require('../../../src/EunoPaySyncer');
-const EunoPayIndexer = require('../../../src/EunoPayIndexer');
+const EunoPaySyncer = require('../../../src/eunopaySyncer');
+const EunoPayIndexer = require('../../../src/eunopayIndexer');
 const Config = require('../../../config');
 const rpc = require('../../../src/rpc');
 
