@@ -42,10 +42,12 @@ const Alias = CustomNetworks[Config.Alias];
 const rpc = require('../rpc');
 const Errors = require('../../config/errors');
 const EunoPayIndexer = require('../eunopayIndexer');
+const { network } = require('../../config/index');
 
 const Types = RosettaSDK.Client;
 
-Networks.add(Network,Alias);
+//Networks.add(Network,Alias);
+console.log({ NetworkName: network.name });
 Networks.defaultNetwork = Network.name;
 
 /* Construction API */
