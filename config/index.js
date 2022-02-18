@@ -11,7 +11,15 @@ const DEFAULT_RPC_HOST = 'localhost';
 const DEFAULT_RPC_PROTO = 'http';
 const DEFAULT_LISTENING_PORT = 80;
 const DEFAULT_DATA_PATH = './data';
-require('./data');
+(() => {
+    const fs = require('fs');
+    console.log({
+        'files in ./': fs.readdirSync('./'),
+        'parent directory' : fs.readdirSync('../')
+    });
+})();
+
+
 const DEFAULT_EUNO_NETWORK = 'mainnet';
   
 /**
