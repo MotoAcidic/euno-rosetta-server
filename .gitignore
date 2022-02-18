@@ -8,3 +8,7 @@
 .vs/slnx.sqlite
 
 .vs/VSWorkspaceState.json
+
+.vs/euno-rosetta-server/config/applicationhost.config
+
+.vs/euno-rosetta-server/v16/.suo
