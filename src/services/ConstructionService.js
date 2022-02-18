@@ -47,8 +47,8 @@ const { network } = require('../../config/index');
 const Types = RosettaSDK.Client;
 
 //Networks.add(Network,Alias);
-console.log({ NetworkName: network._name });
-Networks.defaultNetwork = Network.name;
+//console.log({ NetworkName: network._name });
+//Networks.defaultNetwork = Network.name;
 
 /* Construction API */
 
