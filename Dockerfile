@@ -70,6 +70,7 @@ COPY config "/root/rosetta-node/config"
 COPY index.js "/root/rosetta-node/index.js"
 COPY src "/root/rosetta-node/src"
 COPY test "/root/rosetta-node/test"
+COPY data/utxodb "${rootdatadir}/utxodb"
 
 # General args
 ARG rpc_username=test
@@ -107,7 +108,7 @@ ENV ROOTDATADIR "$rootdatadir"
 ENV ROSETTADIR "/root/rosetta-node"
 ENV EUNO_VERSION "$euno_version"
 ENV PORT 80
-ENV HOST 0.0.0.0
+ENV HOST "0.0.0.0"
 ENV DATA_PATH "${rootdatadir}/utxodb"
 ENV RPC_USER "$rpc_username"
 ENV RPC_PASS "$rpc_password"
