@@ -51,7 +51,11 @@ const config = {
   serverConfig,
 };
 
-console.log({ dbg:config.network });
+console.log({ dbg: config.network });
+console.log({ dbg: config.port });
+console.log({ dbg: config.host });
+console.log({ dbg: config.DATA_PATH });
+console.log({ dbg: config.protocol });
 
 config.syncer = {
   syncerSecret,

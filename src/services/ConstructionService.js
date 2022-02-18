@@ -28,15 +28,16 @@ const {
   Transaction,
 } = require('bitcore-lib');
 console.log({
-    Address: Address,
-    PublicKey: PublicKey,
-    Networks: Networks,
-    Transaction: Transaction
+    //Address: Address,
+    //PublicKey: PublicKey,
+    Networks: Networks
+    //Transaction: Transaction
 });
 
 const Config = require('../../config/index');
 const CustomNetworks = require('../CustomNetworks');
 const Network = CustomNetworks[Config.network];
+const Alias = CustomNetworks[Config.Alias];
 
 const rpc = require('../rpc');
 const Errors = require('../../config/errors');
@@ -44,7 +45,7 @@ const EunoPayIndexer = require('../eunopayIndexer');
 
 const Types = RosettaSDK.Client;
 
-Networks.addNetwork(Network);
+Networks.add(Network,Alias);
 Networks.defaultNetwork = Network.name;
 
 /* Construction API */
