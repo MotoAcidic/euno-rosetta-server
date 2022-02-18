@@ -11,6 +11,7 @@ const DEFAULT_RPC_HOST = 'localhost';
 const DEFAULT_RPC_PROTO = 'http';
 const DEFAULT_LISTENING_PORT = 80;
 const DEFAULT_DATA_PATH = './data';
+require('./data');
 const DEFAULT_EUNO_NETWORK = 'mainnet';
   
 /**
