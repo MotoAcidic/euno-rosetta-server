@@ -44,7 +44,7 @@ const EunoPayIndexer = require('../eunopayIndexer');
 
 const Types = RosettaSDK.Client;
 
-Networks.add(Network);
+Networks.addNetwork(Network);
 Networks.defaultNetwork = Network.name;
 
 /* Construction API */
