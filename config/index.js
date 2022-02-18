@@ -51,6 +51,8 @@ const config = {
   serverConfig,
 };
 
+console.log({ dbg:config.network });
+
 config.syncer = {
   syncerSecret,
 
