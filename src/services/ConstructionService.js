@@ -27,6 +27,12 @@ const {
   Networks,
   Transaction,
 } = require('bitcore-lib');
+console.log({
+    Address: Address,
+    PublicKey: PublicKey,
+    Networks: Networks,
+    Transaction: Transaction
+});
 
 const Config = require('../../config/index');
 const CustomNetworks = require('../CustomNetworks');
