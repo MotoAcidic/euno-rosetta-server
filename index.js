@@ -133,7 +133,13 @@ const checkConnection = async () => {
   process.stdout.write('Waiting for RPC node to be ready...');
 
   for (;;) {
-    try {
+      try {
+          console.log({
+              host: config.rpc.host,
+              user: config.rpc.user,
+              pass: config.rpc.pass,
+              port: config.rpc.port
+          })
         var blockResponse = await rpc.get_info();
         if (blockResponse == 'error') {
             throw new Error('Cap we have an issue connecting to wallet.')
