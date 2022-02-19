@@ -12,8 +12,39 @@ const rpcConfig = {
     port: Config.rpc.rpc_port,
 };
 
+// Lets create a new local client connection
+const localRPCClient = new RPCClient({
+    host: Config.host,
+    username: Config.rpc_user,
+    password: Config.rpc_pass,
+    port: Config.rpc_port
+});
+
+module.exports = {
+
+    /* ------------------------------------------------------------------------------ */
+    // Get block chain info (Bot)
+    /* ------------------------------------------------------------------------------ */
+
+    get_block_count: function () {
+        return new Promise((resolve, reject) => {
+            localRPCClient.getBlockchainInfo(function (error, result) {
+                if (error) {
+                    var errorMessage = "wallet_chain_info: Wallet query problem. (getBlockchainInfo)";
+                    console.log(errorMessage);
+                    resolve('error');
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    },
+
+}
+
+/**
 if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {
-    const baseURL = (Config.connection == 'eunopay' ? 'https://explorer.euno.co/api/' : 'http://172.17.0.1:46463/euno')
+    const baseURL = (Config.connection == 'eunopay' ? 'http://0.0.0.0:8080' : 'http://127.0.0.1:8080')
     const getBlockCountAsync = async () => {
         const result = await axios.get(`${baseURL}/getblockcount`).catch(error => {
             throw error;
@@ -102,3 +133,4 @@ if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {
 
     module.exports = rpc;
 }
+*/
