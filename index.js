@@ -134,18 +134,23 @@ const checkConnection = async () => {
 
   for (;;) {
     try {
-      const response = await rpc.get_info();
-      var currentBlock = response.blocks;
+        var blockResponse = await rpc.get_info();
+        if (blockResponse == 'error') {
+            throw new Error('Cap we have an issue connecting to wallet.')
+            break;
+        }
+        var currentBlock = blockResponse.blocks;
         if (currentBlock == 0) throw new Error('Block height is zero');
         console.log(currentBlock);
       break;
     } catch (e) {
         await wait(30000);
         console.log(currentBlock);
-      process.stdout.write('.');
+        process.stdout.write('.');
     }
   }
-    console.log(currentBlock);
+
+  console.log(currentBlock);
   console.log(' RPC Node ready!');
 };
 
