@@ -1,5 +1,5 @@
-FROM ubuntu:18.04
-USER root
+FROM node:12-alpine
+USER travis
 WORKDIR /data
 
 ARG DEBIAN_FRONTEND=noninteractive
