@@ -23,15 +23,25 @@ const localClient = new Client({
 
 module.exports = {
 
-    /* ------------------------------------------------------------------------------ */
-    // Get block chain info (Bot)
-    /* ------------------------------------------------------------------------------ */
-
     get_block_count: function () {
         return new Promise((resolve, reject) => {
             Client.getblockcount(function (error, result) {
                 if (error) {
                     var errorMessage = "Unable to get block count with (127.0.0.1:8080/getblockcount)";
+                    console.log(errorMessage);
+                    resolve('error');
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    },
+
+    get_info: function () {
+        return new Promise((resolve, reject) => {
+            Client.getinfo(function (error, result) {
+                if (error) {
+                    var errorMessage = "Unable to get wallet info with (127.0.0.1:8080/getinfo)";
                     console.log(errorMessage);
                     resolve('error');
                 } else {

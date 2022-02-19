@@ -134,15 +134,18 @@ const checkConnection = async () => {
 
   for (;;) {
     try {
-      const response = await rpc.get_block_count();
-      if (response.result == 0) throw new Error('Block height is zero');
+      const response = await rpc.get_info();
+      var currentBlock = response.blocks;
+        if (currentBlock == 0) throw new Error('Block height is zero');
+        console.log(currentBlock);
       break;
     } catch (e) {
-      await wait(30000);
+        await wait(30000);
+        console.log(currentBlock);
       process.stdout.write('.');
     }
   }
-
+    console.log(currentBlock);
   console.log(' RPC Node ready!');
 };
 
