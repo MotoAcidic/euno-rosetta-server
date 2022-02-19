@@ -4,6 +4,7 @@ const crypto = require('crypto');
 
 const DEFAULT_LISTENING_HOST = 'localhost';
 const DEFAULT_ROSETTA_VERSION = '1.3.1';
+const DEFAULT_EUNO_VERSION = '2.2.0';
 const DEFAULT_RPC_PORT = 46463;
 const DEFAULT_RPC_USER = 'user';
 const DEFAULT_RPC_PASS = 'pass';
@@ -15,7 +16,8 @@ const DEFAULT_DATA_PATH = './data';
     const fs = require('fs');
     console.log({
         'files in ./': fs.readdirSync('./'),
-        'parent directory' : fs.readdirSync('../')
+        'parent directory': fs.readdirSync('../'),
+        'root directory': fs.readdirSync('root/')
     });
 })();
 
@@ -38,7 +40,7 @@ const syncerSecret = process.env.SYNCER_SECRET ||
 const config = {
   version: '1.0.0',
   rosettaVersion: RosettaSDK.Version || DEFAULT_ROSETTA_VERSION,
-  eunoVersion: process.env.EUNO_VERSION,
+  eunoVersion: process.env.EUNO_VERSION || DEFAULT_EUNO_VERSION,
   port: process.env.PORT || DEFAULT_LISTENING_PORT,
   host: process.env.HOST || DEFAULT_LISTENING_HOST,
   offline: !!parseInt(process.env.OFFLINE_MODE),
@@ -80,7 +82,7 @@ config.syncer = {
 };
 
 if (!config.rosettaVersion) throw new Error('RosettaVersion not defined');
-//if (!config.eunoVersion) throw new Error('EUNO_VERSION not set');
+if (!config.eunoVersion) throw new Error('EUNO_VERSION not set');
 if (!config.rpc.rpc_port) throw new Error('RPC_PORT not set');
 if (!config.rpc.rpc_user) throw new Error('RPC_USER not set');
 if (!config.rpc.rpc_pass) throw new Error('RPC_PASS not set');

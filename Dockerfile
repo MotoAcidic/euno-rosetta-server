@@ -3,6 +3,7 @@ USER root
 WORKDIR /data
 
 ARG DEBIAN_FRONTEND=noninteractive
+# When changing this make sure to change it in /config/index.js as well
 ARG euno_version=2.2.0
 
 # Lets make sure our nameservers can communicate back to google dns
