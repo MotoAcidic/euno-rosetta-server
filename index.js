@@ -129,6 +129,7 @@ const startServer = async () => {
   Server.launch();
 };
 
+/**
 const checkConnection = async () => {
   process.stdout.write('Waiting for RPC node to be ready...');
     console.log({
@@ -137,7 +138,7 @@ const checkConnection = async () => {
         pass: Config.rpcpass,
         port: Config.rpcport
     })
-    var blockResponse = await rpc.get_info();
+    const blockResponse = await rpc.get_info();
     var currentBlock = blockResponse.blocks;
     for (; ;) {
         try {
@@ -154,7 +155,29 @@ const checkConnection = async () => {
   console.log(currentBlock);
   console.log(' RPC Node ready!');
 };
+*/
 
+const checkConnection = async () => {
+    process.stdout.write('Waiting for RPC node to be ready...');
+    console.log({
+        host: Config.host,
+        user: Config.rpcuser,
+        pass: Config.rpcpass,
+        port: Config.rpcport
+    })
+    for (; ;) {
+        try {
+            const response = await rpc.getBlockCountAsync();
+            if (response.result == 0) throw new Error('Block height is zero');
+            break;
+        } catch (e) {
+            await wait(30000);
+            process.stdout.write('.');
+        }
+    }
+
+    console.log(' RPC Node ready!');
+};
 const init = async () => {
   // Wait until rpc is reachable
   await checkConnection();
