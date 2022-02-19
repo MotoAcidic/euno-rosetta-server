@@ -13,7 +13,7 @@ const rpcConfig = {
     port: Config.rpc.rpc_port,
 };
 
-/**
+
 // Lets create a new local client connection
 const localClient = new Client({
     host: Config.rpc.rpc_host,
@@ -22,43 +22,34 @@ const localClient = new Client({
     port: Config.rpc.rpc_port
 });
 
-module.exports = {
-
-    get_block_count: function () {
-        return new Promise((resolve, reject) => {
-            localClient.getblockcount(function (error, result) {
-                if (error) {
-                    var errorMessage = "Unable to get block count with (127.0.0.1:8080/getblockcount)";
-                    console.log(errorMessage);
-                    resolve('error');
-                } else {
-                    resolve(result);
-                }
-            });
-        });
-    },
-
-    get_info: function () {
-        return new Promise((resolve, reject) => {
-            localClient.getinfo(function (error, result) {
-                if (error) {
-                    var errorMessage = "Unable to get wallet info with (127.0.0.1:8080/getinfo)";
-                    console.log(errorMessage);
-                    resolve('error');
-                } else {
-                    resolve(result);
-                }
-            });
-        });
-    },
-
+function get_info() {
+  return new Promise((resolve, reject) => {
+     localClient.getinfo(function (error, result) {
+         if (error) {
+            var errorMessage = "Unable to get wallet info with (127.0.0.1:8080/getinfo)";
+                console.log(errorMessage);
+                resolve('error');
+            } else {
+                resolve(result);
+         }
+     });
+  });
 };
-*/
 
+async function getBlockCountAsync() {
+    console.log('getting block count');
+    const result = await get_info();
+    const block = result.blocks;
+    console.log(result);
+    console.log(block);
+}
+
+
+/**
 if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {
     const baseURL = (Config.rpc.rpc_host)
-    const getBlockCountAsync = async () => {
         const result = await axios.get(`${baseURL}/getblockcount`).catch(error => {
+        const result = await testResult.catch(error => {
             throw error;
         });
         if (result.data.status === "success" && result.data.data) {
@@ -145,3 +136,4 @@ if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {
 
     module.exports = rpc;
 }
+*/
