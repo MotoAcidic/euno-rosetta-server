@@ -13,6 +13,7 @@ const rpcConfig = {
     port: Config.rpc.rpc_port,
 };
 
+/**
 // Lets create a new local client connection
 const localClient = new Client({
     host: Config.rpc.rpc_host,
@@ -52,10 +53,10 @@ module.exports = {
     },
 
 };
+*/
 
-/**
 if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {
-    const baseURL = (Config.connection == 'eunopay' ? 'http://0.0.0.0:8080' : 'http://127.0.0.1:8080')
+    const baseURL = (Config.rpc.rpc_host)
     const getBlockCountAsync = async () => {
         const result = await axios.get(`${baseURL}/getblockcount`).catch(error => {
             throw error;
@@ -144,4 +145,3 @@ if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {
 
     module.exports = rpc;
 }
-*/
