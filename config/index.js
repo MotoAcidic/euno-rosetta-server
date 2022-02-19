@@ -59,11 +59,11 @@ const config = {
   },
 
   rpc: {
-    rpc_port: process.env.RPC_PORT || DEFAULT_RPC_PORT,
-    rpc_user: process.env.RPC_USER || DEFAULT_RPC_USER,
-    rpc_pass: process.env.RPC_PASS || DEFAULT_RPC_PASS,
-    rpc_host: process.env.RPC_HOST || DEFAULT_RPC_HOST,
-    rpc_proto: process.env.RPC_PROTO || DEFAULT_RPC_PROTO,
+    rpc_port: DEFAULT_RPC_PORT,
+    rpc_user: DEFAULT_RPC_USER,
+    rpc_pass: DEFAULT_RPC_PASS,
+    rpc_host: DEFAULT_RPC_HOST,
+    rpc_proto: DEFAULT_RPC_PROTO,
   },
 
   network: process.env.EUNO_NETWORK || DEFAULT_EUNO_NETWORK,
