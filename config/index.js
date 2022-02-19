@@ -16,8 +16,7 @@ const DEFAULT_DATA_PATH = './data';
     const fs = require('fs');
     console.log({
         'files in ./': fs.readdirSync('./'),
-        'parent directory': fs.readdirSync('../'),
-        'Test Data directory': fs.readdirSync('/data')
+        'parent directory': fs.readdirSync('../')
     });
 })();
 
