@@ -2,17 +2,19 @@ const RosettaSDK = require('rosetta-node-sdk');
 const serverConfig = require('./serverConfig');
 const crypto = require('crypto');
 
-const DEFAULT_LISTENING_HOST = 'localhost';
+const DEFAULT_LISTENING_HOST = '127.0.0.1';
 const DEFAULT_ROSETTA_VERSION = '1.3.1';
 const DEFAULT_EUNO_VERSION = '2.2.0';
 const DEFAULT_RPC_PORT = 46463;
-const DEFAULT_RPC_USER = 'user';
-const DEFAULT_RPC_PASS = 'pass';
-const DEFAULT_RPC_HOST = 'localhost';
+const DEFAULT_RPC_USER = 'test';
+const DEFAULT_RPC_PASS = 'testing';
+const DEFAULT_RPC_HOST = '127.0.0.1';
 const DEFAULT_RPC_PROTO = 'http';
 const DEFAULT_LISTENING_PORT = 8080;
 const DEFAULT_CONNECTION = 'eunopay';
 const DEFAULT_DATA_PATH = './data';
+
+/**
 (() => {
     const fs = require('fs');
     console.log({
@@ -20,7 +22,7 @@ const DEFAULT_DATA_PATH = './data';
         'parent directory': fs.readdirSync('../')
     });
 })();
-
+*/
 
 const DEFAULT_EUNO_NETWORK = 'mainnet';
   
@@ -64,11 +66,18 @@ const config = {
   connection: process.env.CONNECTION || DEFAULT_CONNECTION,
 };
 
-console.log({ Network: config.network });
-console.log({ Port: config.port });
-console.log({ Host: config.host });
-console.log({ DataPath: config.DATA_PATH });
-console.log({ Protocol: config.protocol });
+console.log({
+    Title: "This is only a sanity check to see what values are being passed.",
+    Version: config.version,
+    RVersion: config.rosettaVersion,
+    EVersion: config.eunoVersion,    
+    Port: config.port,
+    Host: config.host,
+    DataPath: config.data,
+    RPC: config.rpc,
+    Network: config.network,
+    Connection: config.connection
+});
 
 config.syncer = {
   syncerSecret,
