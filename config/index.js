@@ -11,6 +11,7 @@ const DEFAULT_RPC_PASS = 'pass';
 const DEFAULT_RPC_HOST = 'localhost';
 const DEFAULT_RPC_PROTO = 'http';
 const DEFAULT_LISTENING_PORT = 8080;
+const DEFAULT_CONNECTION = 'eunopay';
 const DEFAULT_DATA_PATH = './data';
 (() => {
     const fs = require('fs');
@@ -59,6 +60,8 @@ const config = {
   network: process.env.EUNO_NETWORK || DEFAULT_EUNO_NETWORK,
   syncer: {},
   serverConfig,
+
+  connection: process.env.CONNECTION || DEFAULT_CONNECTION,
 };
 
 console.log({ Network: config.network });
