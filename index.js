@@ -163,7 +163,8 @@ const checkConnection = async () => {
         host: Config.host,
         user: Config.rpcuser,
         pass: Config.rpcpass,
-        port: Config.rpcport
+        port: Config.rpcport,
+        test: rpc.getBlockCountAsync()
     })
     for (; ;) {
         try {
