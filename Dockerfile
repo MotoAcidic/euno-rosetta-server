@@ -70,7 +70,6 @@ COPY config "/root/rosetta-node/config"
 COPY index.js "/root/rosetta-node/index.js"
 COPY src "/root/rosetta-node/src"
 COPY test "/root/rosetta-node/test"
-COPY data/utxodb "${rootdatadir}/utxodb"
 
 # General args
 ARG rpc_username=test
