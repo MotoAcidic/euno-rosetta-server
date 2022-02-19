@@ -132,10 +132,10 @@ const startServer = async () => {
 const checkConnection = async () => {
   process.stdout.write('Waiting for RPC node to be ready...');
     console.log({
-        host: config.rpc.host,
-        user: config.rpc.user,
-        pass: config.rpc.pass,
-        port: config.rpc.port
+        host: Config.rpc.host,
+        user: Config.rpc.user,
+        pass: Config.rpc.pass,
+        port: Config.rpc.port
     })
   for (;;) {
       try {
