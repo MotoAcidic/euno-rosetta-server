@@ -34,7 +34,7 @@ function get_info() {
          }
      });
   });
-};
+}
 
 async function getBlockCountAsync() {
     console.log('getting block count');
@@ -42,6 +42,10 @@ async function getBlockCountAsync() {
     const block = result.blocks;
     console.log(result);
     console.log(block);
+}
+
+module.exports = {
+    getBlockCountAsync
 }
 
 
