@@ -12,7 +12,7 @@ const rpcConfig = {
 };
 
 if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {
-    const baseURL = (Config.connection == 'eunopay' ? 'https://explorer.euno.co/api/')
+    const baseURL = (Config.connection == 'eunopay' ? 'http://127.0.0.1:8080' : 'https://explorer.euno.co/api/')
     const getBlockCountAsync = async () => {
         const result = await axios.get(`${baseURL}/getblockcount`).catch(error => {
             throw error;
