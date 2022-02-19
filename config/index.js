@@ -49,6 +49,11 @@ const config = {
   explorer: process.env.EXPLORER || DEFAULT_EXPLORER,
   offline: !!parseInt(process.env.OFFLINE_MODE),
 
+    rpchost: DEFAULT_RPC_HOST,
+    rpcuser: DEFAULT_RPC_USER,
+    rpcpass: DEFAULT_RPC_PASS,
+    rpcport: DEFAULT_RPC_PORT,
+
   data: {
     path: process.env.DATA_PATH || DEFAULT_DATA_PATH,
   },
