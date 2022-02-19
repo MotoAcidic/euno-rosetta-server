@@ -1,5 +1,5 @@
 FROM node:12-alpine
-USER travis
+USER root
 WORKDIR /data
 
 ARG DEBIAN_FRONTEND=noninteractive
