@@ -10,14 +10,14 @@ const DEFAULT_RPC_USER = 'user';
 const DEFAULT_RPC_PASS = 'pass';
 const DEFAULT_RPC_HOST = 'localhost';
 const DEFAULT_RPC_PROTO = 'http';
-const DEFAULT_LISTENING_PORT = 80;
+const DEFAULT_LISTENING_PORT = 8080;
 const DEFAULT_DATA_PATH = './data';
 (() => {
     const fs = require('fs');
     console.log({
         'files in ./': fs.readdirSync('./'),
         'parent directory': fs.readdirSync('../'),
-        'root directory': fs.readdirSync('../../../root/')
+        'Test Data directory': fs.readdirSync('/data')
     });
 })();
 
