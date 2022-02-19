@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM ubuntu:focal
 USER root
 WORKDIR /data
 
