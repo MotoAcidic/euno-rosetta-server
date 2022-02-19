@@ -1,4 +1,5 @@
 const RPCClient = require('bitcoind-rpc');
+const Client = require('coinpoolservices-rpc');
 const Bluebird = require('bluebird');
 const axios = require('axios');
 const Config = require('../config');
@@ -13,7 +14,7 @@ const rpcConfig = {
 };
 
 // Lets create a new local client connection
-const localRPCClient = new RPCClient({
+const localClient = new Client({
     host: Config.host,
     username: Config.rpc_user,
     password: Config.rpc_pass,
@@ -28,9 +29,9 @@ module.exports = {
 
     get_block_count: function () {
         return new Promise((resolve, reject) => {
-            localRPCClient.getBlockchainInfo(function (error, result) {
+            Client.getblockcount(function (error, result) {
                 if (error) {
-                    var errorMessage = "wallet_chain_info: Wallet query problem. (getBlockchainInfo)";
+                    var errorMessage = "Unable to get block count with (127.0.0.1:8080/getblockcount)";
                     console.log(errorMessage);
                     resolve('error');
                 } else {
