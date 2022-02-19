@@ -2,6 +2,7 @@ const RPCClient = require('bitcoind-rpc');
 const Bluebird = require('bluebird');
 const axios = require('axios');
 const Config = require('../config');
+const { config } = require('bluebird');
 
 const rpcConfig = {
     protocol: Config.rpc.rpc_proto,
@@ -12,7 +13,8 @@ const rpcConfig = {
 };
 
 if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {
-    const baseURL = (Config.connection == 'eunopay' ? 'http://172.19.214.182:8080' : 'https://explorer.euno.co/api/')
+    //const baseURL = (Config.connection == 'eunopay' ? 'http://172.17.0.1:8080' : 'https://explorer.euno.co/api/')
+    const baseURL = (Config.explorer)
     const getBlockCountAsync = async () => {
         const result = await axios.get(`${baseURL}/getblockcount`).catch(error => {
             throw error;

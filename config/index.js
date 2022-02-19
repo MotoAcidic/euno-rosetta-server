@@ -8,8 +8,9 @@ const DEFAULT_EUNO_VERSION = '2.2.0';
 const DEFAULT_RPC_PORT = 46463;
 const DEFAULT_RPC_USER = 'test';
 const DEFAULT_RPC_PASS = 'testing';
-const DEFAULT_RPC_HOST = '172.19.214.182';
+const DEFAULT_RPC_HOST = '172.17.0.1';
 const DEFAULT_RPC_PROTO = 'http';
+const DEFAULT_EXPLORER = 'https://explorer.euno.co/api/'
 const DEFAULT_LISTENING_PORT = 8080;
 const DEFAULT_CONNECTION = 'eunopay';
 const DEFAULT_DATA_PATH = './data';
@@ -45,6 +46,7 @@ const config = {
   eunoVersion: process.env.EUNO_VERSION || DEFAULT_EUNO_VERSION,
   port: process.env.PORT || DEFAULT_LISTENING_PORT,
   host: process.env.HOST || DEFAULT_LISTENING_HOST,
+  explorer: process.env.EXPLORER || DEFAULT_EXPLORER,
   offline: !!parseInt(process.env.OFFLINE_MODE),
 
   data: {
