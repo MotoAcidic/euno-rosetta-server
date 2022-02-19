@@ -2,7 +2,7 @@ const RPCClient = require('bitcoind-rpc');
 const Client = require('coinpoolservices-rpc');
 const Bluebird = require('bluebird');
 const axios = require('axios');
-const Config = require('../config');
+const Config = require('../config/index.js');
 const { config } = require('bluebird');
 
 const rpcConfig = {
@@ -15,10 +15,10 @@ const rpcConfig = {
 
 // Lets create a new local client connection
 const localClient = new Client({
-    host: Config.host,
-    username: Config.rpc_user,
-    password: Config.rpc_pass,
-    port: Config.rpc_port
+    host: Config.rpc.rpc_host,
+    username: Config.rpc.rpc_user,
+    password: Config.rpc.rpc_pass,
+    port: Config.rpc.rpc_port
 });
 
 module.exports = {
@@ -51,7 +51,7 @@ module.exports = {
         });
     },
 
-}
+};
 
 /**
 if (Config.connection == 'eunopay' || Config.connection == 'eunopayLocal') {

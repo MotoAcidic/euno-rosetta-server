@@ -2,13 +2,13 @@ const RosettaSDK = require('rosetta-node-sdk');
 const serverConfig = require('./serverConfig');
 const crypto = require('crypto');
 
-const DEFAULT_LISTENING_HOST = 'localhost';
+const DEFAULT_LISTENING_HOST = '127.0.0.1';
 const DEFAULT_ROSETTA_VERSION = '1.3.1';
 const DEFAULT_EUNO_VERSION = '2.2.0';
 const DEFAULT_RPC_PORT = 46463;
 const DEFAULT_RPC_USER = 'test';
 const DEFAULT_RPC_PASS = 'testing';
-const DEFAULT_RPC_HOST = '0.0.0.0';
+const DEFAULT_RPC_HOST = '127.0.0.1';
 const DEFAULT_RPC_PROTO = 'http';
 const DEFAULT_EXPLORER = 'https://explorer.euno.co/api/'
 const DEFAULT_LISTENING_PORT = 8080;
