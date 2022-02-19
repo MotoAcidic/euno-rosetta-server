@@ -8,7 +8,7 @@ const DEFAULT_EUNO_VERSION = '2.2.0';
 const DEFAULT_RPC_PORT = 46463;
 const DEFAULT_RPC_USER = 'test';
 const DEFAULT_RPC_PASS = 'testing';
-const DEFAULT_RPC_HOST = '127.0.0.1';
+const DEFAULT_RPC_HOST = '172.19.214.182';
 const DEFAULT_RPC_PROTO = 'http';
 const DEFAULT_LISTENING_PORT = 8080;
 const DEFAULT_CONNECTION = 'eunopay';
@@ -66,6 +66,7 @@ const config = {
   connection: process.env.CONNECTION || DEFAULT_CONNECTION,
 };
 
+// Logs to make sure values above are being populated.
 console.log({
     Title: "This is only a sanity check to see what values are being passed.",
     Version: config.version,
