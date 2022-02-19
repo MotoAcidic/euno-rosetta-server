@@ -17,7 +17,7 @@ const DEFAULT_DATA_PATH = './data';
     console.log({
         'files in ./': fs.readdirSync('./'),
         'parent directory': fs.readdirSync('../'),
-        'root directory': fs.readdirSync('root/')
+        'root directory': fs.readdirSync('../../../root/')
     });
 })();
 
