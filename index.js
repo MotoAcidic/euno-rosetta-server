@@ -130,7 +130,7 @@ const checkConnection = async () => {
     process.stdout.write('Waiting for RPC node to be ready...');
 
     // All used wallet rpc calls
-    var chainInfo = await rpc.wallet_chain_info();
+    var chainInfo = await rpc.get_chain_info();
     var chainInfoBlocks = chainInfo.blocks;
 
     console.log({
