@@ -90,23 +90,23 @@ const networkStatus = async (params) => {
   let peers;
 
   try {
-    const info = await rpc.getBlockchainInfoAsync();
+    const info = await rpc.get_chain_info();
     currentBlockIdentifier = new Types.BlockIdentifier(
-      info.result.blocks, // height
-      info.result.bestblockhash, // hash
+      info.blocks, // height
+      info.bestblockhash, // hash
     );
 
-    const bestBlock = await rpc.getBlockAsync(currentBlockIdentifier.hash, 1);
-    currentBlockTimestamp = bestBlock.result.time * 1000; // milliseconds
+    const bestBlock = await rpc.get_block(currentBlockIdentifier.hash, 1);
+    currentBlockTimestamp = bestBlock.time * 1000; // milliseconds
 
-    const genesisBlock = await rpc.getBlockHashAsync(0);
+    const genesisBlock = await rpc.get_block_hash(0);
     genesisBlockIdentifier = new Types.BlockIdentifier(
       0, // index: 0
       genesisBlock.result, // hash
     );
 
-    const peersData = await rpc.getPeerInfoAsync();
-    peers = peersData.result.map((p) => Types.Peer.constructFromObject({
+      const peersData = await rpc.get_peer_info();
+      peers = peersData.result.map((p) => Types.Peer.constructFromObject({
       peer_id: p.id,
       metadata: {
         addr: p.addr,

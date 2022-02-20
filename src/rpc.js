@@ -23,11 +23,54 @@ const localClient = new Client({
 });
 
 module.exports = {
-    wallet_chain_info: function () {
+    // Get the block chain info in one call to get block height and hash
+    get_chain_info: function () {
         return new Promise((resolve, reject) => {
             localClient.getBlockchainInfo(function (error, result) {
                 if (error) {
-                    console.log("wallet_chain_info: Wallet query problem. (getBlockchainInfo)");
+                    console.log("get_chain_info: Wallet query problem. (getBlockchainInfo)");
+                    resolve('error');
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    },
+
+    // Get the block height based on the hash provided
+    get_block: function (hash) {
+        return new Promise((resolve, reject) => {
+            localClient.getblock(hash, function (error, result) {
+                if (error) {
+                    console.log("get_block: Wallet query problem. (getblock hash)");
+                    resolve('error');
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    },
+
+    // Get the hash of the provided block height
+    get_block_hash: function (block) {
+        return new Promise((resolve, reject) => {
+            localClient.getblockhash(block, function (error, result) {
+                if (error) {
+                    console.log("get_block_hash: Wallet query problem. (getblock number)");
+                    resolve('error');
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    },
+
+    // Get connected peer info
+    get_peer_info: function () {
+        return new Promise((resolve, reject) => {
+            localClient.getblockhash(function (error, result) {
+                if (error) {
+                    console.log("get_peer_info: Wallet query problem. (getpeerinfo)");
                     resolve('error');
                 } else {
                     resolve(result);
