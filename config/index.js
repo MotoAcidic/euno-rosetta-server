@@ -42,11 +42,11 @@ const syncerSecret = process.env.SYNCER_SECRET ||
 
 const config = {
   version: '1.0.0',
-  rosettaVersion: RosettaSDK.Version || DEFAULT_ROSETTA_VERSION,
-  eunoVersion: process.env.EUNO_VERSION || DEFAULT_EUNO_VERSION,
-  port: process.env.PORT || DEFAULT_LISTENING_PORT,
-  host: process.env.HOST || DEFAULT_LISTENING_HOST,
-  explorer: process.env.EXPLORER || DEFAULT_EXPLORER,
+  rosettaVersion: DEFAULT_ROSETTA_VERSION,
+  eunoVersion: DEFAULT_EUNO_VERSION,
+  port: DEFAULT_LISTENING_PORT,
+  host: DEFAULT_LISTENING_HOST,
+  explorer: DEFAULT_EXPLORER,
   offline: !!parseInt(process.env.OFFLINE_MODE),
 
     rpchost: DEFAULT_RPC_HOST,
@@ -55,7 +55,7 @@ const config = {
     rpcport: DEFAULT_RPC_PORT,
 
   data: {
-    path: process.env.DATA_PATH || DEFAULT_DATA_PATH,
+    path: DEFAULT_DATA_PATH,
   },
 
   rpc: {
@@ -66,11 +66,11 @@ const config = {
     rpc_proto: DEFAULT_RPC_PROTO,
   },
 
-  network: process.env.EUNO_NETWORK || DEFAULT_EUNO_NETWORK,
+  network: DEFAULT_EUNO_NETWORK,
   syncer: {},
   serverConfig,
 
-  connection: process.env.CONNECTION || DEFAULT_CONNECTION,
+  connection: DEFAULT_CONNECTION,
 };
 
 // Logs to make sure values above are being populated.
