@@ -155,17 +155,19 @@ const checkConnection = async () => {
 
 const init = async () => {
   // Wait until rpc is reachable
+  conosle.log('Made it to connectino Pt 1');
   await checkConnection();
 
   // Start the REST Server
-    console.log(Config.host);
-    console.log(Config.port);
+  console.log('Made it to start Server Pt 2');
   await startServer();
 
   // Init the UTXO indexing service
+    console.log('Made it to the indexer Pt 3');
   await EunoPayIndexer.initIndexer();
 
   // Start the UTXO indexer
+    console.log('Made it to the utxo Pt 4');
   await startSyncer();
 };
 
