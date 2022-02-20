@@ -64,6 +64,10 @@ const asserter = RosettaSDK.Asserter.NewServer(
   Config.serverConfig.networkIdentifiers,
 );
 
+// All used wallet rpc calls
+var chainInfo = await rpc.wallet_chain_info();
+var chainInfoBlocks = chainInfo.blocks;
+
 // Register global asserter
 Server.useAsserter(asserter);
 
@@ -140,34 +144,6 @@ const startServer = async () => {
   Server.launch();
 };
 
-/**
-const checkConnection = async () => {
-  process.stdout.write('Waiting for RPC node to be ready...');
-    console.log({
-        host: Config.host,
-        user: Config.rpcuser,
-        pass: Config.rpcpass,
-        port: Config.rpcport
-    })
-    const blockResponse = await rpc.get_info();
-    var currentBlock = blockResponse.blocks;
-    for (; ;) {
-        try {
-        if (currentBlock == 0) throw new Error('Block height is zero');
-        console.log(currentBlock);
-      break;
-        } catch (e) {
-        await wait(30000);
-        console.log(currentBlock);
-        process.stdout.write('.');
-        }
-    }
-
-  console.log(currentBlock);
-  console.log(' RPC Node ready!');
-};
-*/
-
 const checkConnection = async () => {
     process.stdout.write('Waiting for RPC node to be ready...');
 
@@ -175,25 +151,22 @@ const checkConnection = async () => {
         host: Config.host,
         user: Config.rpcuser,
         pass: Config.rpcpass,
-        port: Config.rpcport
+        port: Config.rpcport,
+        block: chainInfoBlocks
     })
-
-    var wallet = await rpc.wallet_chain_info();
-    var walletBlocks = wallet.blocks;
 
     for (;;) {
         try {
-            console.log(walletBlocks)
-            if (walletBlocks == 0) throw new Error('Block height is zero');
+            if (chainInfoBlocks == 0) throw new Error('Block height is zero');
             break;
         } catch (e) {
             await wait(30000);
             process.stdout.write('.');
         }
     }
-
     console.log(' RPC Node ready!');
 };
+
 const init = async () => {
   // Wait until rpc is reachable
   await checkConnection();
