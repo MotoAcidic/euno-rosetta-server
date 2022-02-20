@@ -100,7 +100,7 @@ const networkStatus = async (params) => {
           })
     );
 
-    const bestHash = info.bestblockhash;
+    const bestHash = chainInfo.bestblockhash;
       console.log(bestHash, 'Made it past the chain info call')
     const bestBlock = await rpc.get_block(bestHash, { extension: 'json' });
     currentBlockTimestamp = bestBlock.time * 1000; // milliseconds
