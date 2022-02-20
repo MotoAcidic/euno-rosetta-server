@@ -122,7 +122,7 @@ const networkStatus = async (params) => {
       },
 
       }))
-          console.log(peer_id);
+          console.log(p.id);
   } catch (e) {
     console.error(e);
     throw Errors.UNABLE_TO_RETRIEVE_NODE_STATUS;
