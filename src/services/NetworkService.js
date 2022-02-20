@@ -100,10 +100,10 @@ const networkStatus = async (params) => {
           })
     );
 
-    const bestBlock = await rpc.get_block(currentBlockIdentifier.bestblockhash, { extension: 'json' });
+    const bestBlock = await rpc.get_block_hash(currentBlockIdentifier.bestblockhash, { extension: 'json' });
     currentBlockTimestamp = bestBlock.time * 1000; // milliseconds
 
-    const genesisBlock = await rpc.get_block_hash(0);
+    const genesisBlock = await rpc.get_block(0);
     genesisBlockIdentifier = new Types.BlockIdentifier(
       0, // index: 0
       genesisBlock.result, // hash

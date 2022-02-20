@@ -38,7 +38,7 @@ module.exports = {
     },
 
     // Get the block height based on the hash provided
-    get_block: function (hash) {
+    get_block_hash: function (hash) {
         return new Promise((resolve, reject) => {
             localClient.getBlockByHash(hash, function (error, result) {
                 if (error) {
@@ -52,9 +52,9 @@ module.exports = {
     },
 
     // Get the hash of the provided block height
-    get_block_hash: function (block) {
+    get_block: function (block) {
         return new Promise((resolve, reject) => {
-            localClient.getblockhash(block, function (error, result) {
+            localClient.getBlock(block, function (error, result) {
                 if (error) {
                     console.log("get_block_hash: Wallet query problem. (getblock number)");
                     resolve('error');
