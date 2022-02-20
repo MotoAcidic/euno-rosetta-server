@@ -40,10 +40,6 @@ console.log(`
 
 /* Create a server configuration */
 const Server = new RosettaSDK.Server({
-    console.log({
-        host: Config.host,
-        port: Config.port
-    })
   URL_HOST: Config.host,
   URL_PORT: Config.port,
 });
@@ -162,6 +158,8 @@ const init = async () => {
   await checkConnection();
 
   // Start the REST Server
+    console.log(Config.host);
+    console.log(Config.port);
   await startServer();
 
   // Init the UTXO indexing service
