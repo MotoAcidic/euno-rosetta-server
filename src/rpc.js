@@ -29,7 +29,18 @@ const get_block_count = () => {
 }
 
 module.exports = {
-    get_block_count
+    wallet_chain_info: function () {
+        return new Promise((resolve, reject) => {
+            localClient.getBlockchainInfo(function (error, result) {
+                if (error) {
+                    console.log("wallet_chain_info: Wallet query problem. (getBlockchainInfo)");
+                    resolve('error');
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    },
 }
 
 

@@ -175,15 +175,16 @@ const checkConnection = async () => {
         host: Config.host,
         user: Config.rpcuser,
         pass: Config.rpcpass,
-        port: Config.rpcport,
-        test: localClient.getblockcount()
+        port: Config.rpcport
     })
 
+    var wallet = await rpc.wallet_chain_info();
+    var walletBlocks = wallet.blocks;
 
     for (;;) {
         try {
-            const response = await localClient.getblockcount();
-            if (response.result == 0) throw new Error('Block height is zero');
+            console.log(walletBlocks)
+            if (walletBlocks == 0) throw new Error('Block height is zero');
             break;
         } catch (e) {
             await wait(30000);
