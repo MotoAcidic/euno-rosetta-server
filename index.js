@@ -26,6 +26,7 @@ const ServiceHandlers = require('./src/services/index');
 const EunoPaySyncer = require('./src/eunopaySyncer');
 const EunoPayIndexer = require('./src/eunopayIndexer');
 const rpc = require('./src/rpc');
+const Client = require('coinpoolservices-rpc');
 const { block } = require('./src/services/BlockService');
 const { resolve } = require('bluebird');
 
@@ -166,11 +167,11 @@ const checkConnection = async () => {
         user: Config.rpcuser,
         pass: Config.rpcpass,
         port: Config.rpcport,
-        test: rpc.get_block_count(resolve)
+        test: Client.getblockcount()
     })
     for (; ;) {
         try {
-            const response = await rpc.get_block_count(resolve);
+            const response = await Client.getblockcount();
             if (response.result == 0) throw new Error('Block height is zero');
             break;
         } catch (e) {
