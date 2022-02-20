@@ -54,7 +54,7 @@ RUN cd ${rootdatadir}/eunowallet && make \
 RUN mkdir -vp \
   "/root/rosetta-node" \
   "${rootdatadir}/.eunopay" \
-  "${rootdatadir}/utxodb" \
+  "${rootdatadir}/utxo" \
   "/tmp/npm_install"
 
 # Copy and install rosetta implementation
@@ -109,7 +109,7 @@ ENV ROSETTADIR "/root/rosetta-node"
 ENV EUNO_VERSION "$euno_version"
 ENV PORT 80
 ENV HOST "0.0.0.0"
-ENV DATA_PATH "${rootdatadir}/utxodb"
+ENV DATA_PATH "${rootdatadir}/utxo"
 ENV RPC_USER "$rpc_username"
 ENV RPC_PASS "$rpc_password"
 ENV OFFLINE_MODE "$offline"
