@@ -113,7 +113,7 @@ const networkStatus = async (params) => {
     );
 
       const peersData = await rpc.get_peer_info();
-      peers = peersData.result.map((p) => Types.Peer.constructFromObject({
+      peers = peersData.map((p) => Types.Peer.constructFromObject({
       peer_id: p.id,
       metadata: {
         addr: p.addr,
