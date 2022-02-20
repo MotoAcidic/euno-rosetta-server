@@ -91,7 +91,7 @@ const networkStatus = async (params) => {
 
   try {
     const info = await rpc.get_chain_info();
-    var currentBlockIdentifier = new Types.BlockIdentifier(
+      currentBlockIdentifier = new Types.BlockIdentifier(
           info.blocks, // height
           info.bestblockhash, // hash
           console.log({
@@ -100,7 +100,7 @@ const networkStatus = async (params) => {
           })
     );
 
-    const bestBlock = await rpc.get_block(currentBlockIdentifier.info.bestblockhash, { extension: 'json' });
+    const bestBlock = await rpc.get_block(currentBlockIdentifier.bestblockhash, { extension: 'json' });
     currentBlockTimestamp = bestBlock.time * 1000; // milliseconds
 
     const genesisBlock = await rpc.get_block_hash(0);
