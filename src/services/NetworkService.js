@@ -90,17 +90,17 @@ const networkStatus = async (params) => {
   let peers;
 
   try {
-    const info = await rpc.get_chain_info();
+    const chainInfo = await rpc.get_chain_info();
       currentBlockIdentifier = new Types.BlockIdentifier(
-          info.blocks, // height
-          info.bestblockhash, // hash
+          chainInfo.blocks, // height
+          chainInfo.bestblockhash, // hash
           console.log({
-              blocks: info.blocks,
-              bestblockhash: info.bestblockhash
+              blocks: chainInfo.blocks,
+              bestblockhash: chainInfo.bestblockhash
           })
     );
 
-    const bestBlock = await rpc.get_block(currentBlockIdentifier.bestblockhash, { extension: 'json' });
+    const bestBlock = await rpc.get_block(chainInfo.bestblockhash, { extension: 'json' });
     currentBlockTimestamp = bestBlock.time * 1000; // milliseconds
       console.log(bestBlock.time)
       console.log(currentBlockTimestamp)
