@@ -91,7 +91,7 @@ const networkStatus = async (params) => {
 
   try {
     const info = await rpc.get_chain_info();
-      currentBlockIdentifier = new Types.BlockIdentifier(
+    var currentBlockIdentifier = new Types.BlockIdentifier(
           info.blocks, // height
           info.bestblockhash, // hash
           console.log({
