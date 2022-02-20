@@ -155,7 +155,7 @@ const checkConnection = async () => {
 
 const init = async () => {
   // Wait until rpc is reachable
-  conosole.log('Made it to connectino Pt 1');
+  console.log('Made it to connectino Pt 1');
   await checkConnection();
 
   // Start the REST Server
