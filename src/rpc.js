@@ -40,7 +40,7 @@ module.exports = {
     // Get the block height based on the hash provided
     get_block: function (hash) {
         return new Promise((resolve, reject) => {
-            localClient.getblock(hash, function (error, result) {
+            localClient.getBlockByHash(hash, function (error, result) {
                 if (error) {
                     console.log("get_block: Wallet query problem. (getblock hash)");
                     resolve('error');
