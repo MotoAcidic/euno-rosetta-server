@@ -74,12 +74,18 @@ const returnSymbol = (symbol) => {
 };
 
 const hexToBin = (hexString) => {
-  if (typeof hexString !== 'string' || hexString.length == 0) {
-    throw new Error(`No valid string: ${hexString}`);
+  console.log(hexString)
+  if(hexString !== undefined)
+  {
+    console.log(hexString);
+    if (typeof hexString !== 'string' || hexString.length == 0) {
+      throw new Error(`No valid string: ${hexString}`);
+    }
+  
+    const ret = Buffer.from(hexString, 'hex');
+    return ret;
   }
 
-  const ret = Buffer.from(hexString, 'hex');
-  return ret;
 };
 
 const binToHex = (binary) => {
@@ -700,6 +706,7 @@ class Indexer {
   }
 
   serializeUtxoKey(txSymbol, n) {
+    
     return UtxoKeySchema.encode({
       txSymbol,
       n,
@@ -796,14 +803,14 @@ class Indexer {
   }
 
   async batchTransactionInputs(tx, txSymbol, blockSymbol) {
-    for (const input of tx.vin) {
+    for (const input of tx) {
       // 1. Step: Check if utxo exists
       const { txid, vout, coinbase } = input;
 
-      if (!txid || vout == null) {
-        if (!coinbase) throw new Error(`Invalid input @ blockSymbol = ${blockSymbol}`);
-        continue;
-      }
+      // if (!txid || vout == null) {
+      //   if (!coinbase) throw new Error(`Invalid input @ blockSymbol = ${blockSymbol}`);
+      //   continue;
+      // }
 
       const pair = await this.utxoExists(txid, vout);
       if (pair == null) {
