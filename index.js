@@ -50,6 +50,14 @@ const Server = new RosettaSDK.Server({
   URL_PORT: Config.port,
 });
 
+// Lets create a new local client connection
+const localClient = new Client({
+    host: Config.rpc.rpc_host,
+    username: Config.rpc.rpc_user,
+    password: Config.rpc.rpc_pass,
+    port: Config.rpc.rpc_port
+});
+
 const asserter = RosettaSDK.Asserter.NewServer(
   Config.serverConfig.operationTypesList,
   Config.serverConfig.historicalBalanceLookup,
@@ -162,6 +170,7 @@ const checkConnection = async () => {
 
 const checkConnection = async () => {
     process.stdout.write('Waiting for RPC node to be ready...');
+
     console.log({
         host: Config.host,
         user: Config.rpcuser,
@@ -169,9 +178,11 @@ const checkConnection = async () => {
         port: Config.rpcport,
         test: Client.getblockcount()
     })
-    for (; ;) {
+
+
+    for (;;) {
         try {
-            const response = await Client.getblockcount();
+            const response = await localClient.getblockcount();
             if (response.result == 0) throw new Error('Block height is zero');
             break;
         } catch (e) {
