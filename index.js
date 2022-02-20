@@ -31,12 +31,6 @@ const { block } = require('./src/services/BlockService');
 const { resolve } = require('bluebird');
 
 console.log(`                                                                    
- ____  _     _ _____     _          _____             _   _          _____       _     
-|    \\|_|___|_| __  |_ _| |_ ___   | __  |___ ___ ___| |_| |_ ___   |   | |___ _| |___ 
-|  |  | | . | | __ -| | |  _| -_|  |    -| . |_ -| -_|  _|  _| .'|  | | | | . | . | -_|
-|____/|_|_  |_|_____|_  |_| |___|  |__|__|___|___|___|_| |_| |__,|  |_|___|___|___|___|
-        |___|       |___|                                                              
-
              Version                  ${Config.version}
              Rosetta Version          ${Config.rosettaVersion}
              EunoPay Node Version     ${Config.eunoVersion}
@@ -63,10 +57,6 @@ const asserter = RosettaSDK.Asserter.NewServer(
   Config.serverConfig.historicalBalanceLookup,
   Config.serverConfig.networkIdentifiers,
 );
-
-// All used wallet rpc calls
-var chainInfo = await rpc.wallet_chain_info();
-var chainInfoBlocks = chainInfo.blocks;
 
 // Register global asserter
 Server.useAsserter(asserter);
@@ -146,6 +136,10 @@ const startServer = async () => {
 
 const checkConnection = async () => {
     process.stdout.write('Waiting for RPC node to be ready...');
+
+    // All used wallet rpc calls
+    var chainInfo = await rpc.wallet_chain_info();
+    var chainInfoBlocks = chainInfo.blocks;
 
     console.log({
         host: Config.host,
