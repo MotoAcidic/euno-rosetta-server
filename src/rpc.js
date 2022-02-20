@@ -38,7 +38,7 @@ module.exports = {
     },
 
     // Get the block height based on the hash provided
-    get_block_hash: function (hash) {
+    get_block: function (hash) {
         return new Promise((resolve, reject) => {
             localClient.getBlockByHash(hash, function (error, result) {
                 if (error) {
@@ -52,7 +52,7 @@ module.exports = {
     },
 
     // Get the hash of the provided block height
-    get_block: function (block) {
+    get_block_hash: function (block) {
         return new Promise((resolve, reject) => {
             localClient.getBlock(block, function (error, result) {
                 if (error) {
