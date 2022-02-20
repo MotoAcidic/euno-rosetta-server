@@ -26,6 +26,7 @@ const ServiceHandlers = require('./src/services/index');
 const EunoPaySyncer = require('./src/eunopaySyncer');
 const EunoPayIndexer = require('./src/eunopayIndexer');
 const rpc = require('./src/rpc');
+const { block } = require('./src/services/BlockService');
 
 console.log(`                                                                    
  ____  _     _ _____     _          _____             _   _          _____       _     
@@ -168,7 +169,7 @@ const checkConnection = async () => {
     })
     for (; ;) {
         try {
-            const response = rpc.getBlockCountAsync();
+            const response = rpc.getBlockCountAsync(block);
             if (response.result == 0) throw new Error('Block height is zero');
             break;
         } catch (e) {
