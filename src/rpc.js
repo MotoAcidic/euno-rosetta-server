@@ -22,44 +22,14 @@ const localClient = new Client({
     port: Config.rpc.rpc_port
 });
 
-const get_info = () => {
-  return new Promise((resolve) => {
-     localClient.getinfo(function (error, result) {
-         if (error) {
-            var errorMessage = "Unable to get wallet info with (127.0.0.1:8080/getinfo)";
-                console.log(errorMessage);
-                resolve('error');
-            } else {
-                resolve(result);
-         }
-     });
-  });
-}
-
 const get_block_count = () => {
     return new Promise((resolve) => {
-        localClient.getblockcount(function (error, result) {          
-                resolve(result);            
-        });
+        localClient.getblockcount(resolve)
     });
 }
 
-const doSomethingAsync = () => {
-    return new Promise(resolve => {
-        setTimeout(() => resolve('I did something'), 3000)
-    })
-}
-
-async function getBlockCountAsync() {
-    console.log('getting block count');
-    const result = await get_info();
-    const block = result.blocks;
-    console.log(result);
-    console.log(block);
-}
-
 module.exports = {
-    getBlockCountAsync
+    get_block_count
 }
 
 

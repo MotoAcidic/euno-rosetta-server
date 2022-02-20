@@ -164,12 +164,11 @@ const checkConnection = async () => {
         host: Config.host,
         user: Config.rpcuser,
         pass: Config.rpcpass,
-        port: Config.rpcport,
-        test: rpc.getBlockCountAsync()
+        port: Config.rpcport
     })
     for (; ;) {
         try {
-            const response = rpc.get_block_count();
+            const response = await rpc.get_block_count();
             if (response.result == 0) throw new Error('Block height is zero');
             break;
         } catch (e) {
