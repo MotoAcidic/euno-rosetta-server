@@ -68,7 +68,7 @@ module.exports = {
     // Get connected peer info
     get_peer_info: function () {
         return new Promise((resolve, reject) => {
-            localClient.getblockhash(function (error, result) {
+            localClient.getPeerInfo(function (error, result) {
                 if (error) {
                     console.log("get_peer_info: Wallet query problem. (getpeerinfo)");
                     resolve('error');
