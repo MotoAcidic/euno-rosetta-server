@@ -155,7 +155,7 @@ const checkConnection = async () => {
 
 const init = async () => {
   // Wait until rpc is reachable
-  conosle.log('Made it to connectino Pt 1');
+  conosole.log('Made it to connectino Pt 1');
   await checkConnection();
 
   // Start the REST Server
