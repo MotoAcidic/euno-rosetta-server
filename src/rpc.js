@@ -22,12 +22,6 @@ const localClient = new Client({
     port: Config.rpc.rpc_port
 });
 
-const get_block_count = () => {
-    return new Promise((resolve) => {
-        localClient.getblockcount(resolve)
-    });
-}
-
 module.exports = {
     wallet_chain_info: function () {
         return new Promise((resolve, reject) => {

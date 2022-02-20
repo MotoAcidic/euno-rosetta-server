@@ -40,16 +40,12 @@ console.log(`
 
 /* Create a server configuration */
 const Server = new RosettaSDK.Server({
+    console.log({
+        host: Config.host,
+        port: Config.port
+    })
   URL_HOST: Config.host,
   URL_PORT: Config.port,
-});
-
-// Lets create a new local client connection
-const localClient = new Client({
-    host: Config.rpc.rpc_host,
-    username: Config.rpc.rpc_user,
-    password: Config.rpc.rpc_pass,
-    port: Config.rpc.rpc_port
 });
 
 const asserter = RosettaSDK.Asserter.NewServer(
