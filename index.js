@@ -169,7 +169,7 @@ const checkConnection = async () => {
     })
     for (; ;) {
         try {
-            const response = rpc.getBlockCountAsync(block);
+            const response = rpc.get_block_count();
             if (response.result == 0) throw new Error('Block height is zero');
             break;
         } catch (e) {
