@@ -733,6 +733,10 @@ class Indexer {
 
   async utxoExistsBySymbol(txSymbol, vout) {
     // 1. Step: Check args
+      console.log({
+          title: 'line 737',
+          vout: vout
+      })
     if (txSymbol == null) {
       console.error('Null passed to utxoExistsBySymbol');
       return null;
