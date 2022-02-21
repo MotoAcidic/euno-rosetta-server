@@ -57,7 +57,7 @@ const block = async (params, req) => {
       blockRequest.block_identifier.hash = hashResponse.result;
       console.log({
           title: 'made it past block hash check',
-          hash: hashResponse
+          hash: hashResponse.result
       })
   }
 
