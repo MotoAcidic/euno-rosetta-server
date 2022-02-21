@@ -63,7 +63,7 @@ const block = async (params, req) => {
    */
   blockData = SyncBlockCache.get(blockRequest.block_identifier.hash);
   if (blockData == null) {
-    const blockResponse = await rpc.getBlockAsync(blockRequest.block_identifier.hash, 2);
+    const blockResponse = await rpc.get_block(blockRequest.block_identifier.hash, 2);
 
     blockData = blockResponse.result;
     if (!blockData) {
