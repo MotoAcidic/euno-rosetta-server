@@ -733,21 +733,12 @@ class Indexer {
 
   async utxoExistsBySymbol(txSymbol, vout) {
     // 1. Step: Check args
-      console.log({
-          title: 'line 737',
-          vout: vout
-      })
     if (txSymbol == null) {
       console.error('Null passed to utxoExistsBySymbol');
       return null;
     }
 
     // 2. Step: Generate the binary utxo key
-      console.log({
-          title: 'line 743',
-          txSymbol: txSymbol,
-          vout: vout
-      })
     const key = this.serializeUtxoKey(txSymbol, vout);
 
     // 3. Step: Fetch from database using generated key
@@ -764,7 +755,16 @@ class Indexer {
       key,
       value: Buffer.from(value),
       symbol: txSymbol,
-    };
+      };
+
+      console.log({
+          Title: 'Line 761',
+          txSymbol: txSymbol,
+          vout: vout,
+          key: key,
+          value: value,
+          symbol: symbol
+      })
   }
 
   async utxoExists(txid, vout) {
