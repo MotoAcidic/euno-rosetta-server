@@ -20,6 +20,7 @@ function BlockCache(space = 1000) {
       delete map[hashToBeRemoved];
     }
   };
+    console.log('made it past this garbage')
 }
 
 module.exports = BlockCache;
