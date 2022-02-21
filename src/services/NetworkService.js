@@ -106,7 +106,7 @@ const networkStatus = async (params) => {
     const genesisBlock = await rpc.get_block_hash(0);
     genesisBlockIdentifier = new Types.BlockIdentifier(
       0, // index: 0
-      genesisBlock.result, // hash
+      genesisBlock, // hash
     );
       console.log({
           title: 'Made it past chain info call, checking if genesis calls',
