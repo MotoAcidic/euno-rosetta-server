@@ -709,7 +709,7 @@ class Indexer {
   }
 
   serializeUtxoKey(txSymbol, n) {
-    
+      console.log('made it into serializeUtxoKey')
     return UtxoKeySchema.encode({
       txSymbol,
       n,

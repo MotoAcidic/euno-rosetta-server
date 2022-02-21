@@ -55,10 +55,6 @@ const block = async (params, req) => {
     SyncBlockCache.get('')
       const hashResponse = await rpc.get_block_hash(blockRequest.block_identifier.index);
       blockRequest.block_identifier.hash = hashResponse;
-      console.log({
-          title: 'made it past block hash check',
-          hash: blockRequest.block_identifier.hash
-      })
   }
 
   /**
