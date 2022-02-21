@@ -121,7 +121,6 @@ const networkStatus = async (params) => {
         version: p.version,
         subver: p.subver,
       },}))
-          console.log(peerData.id);
   } catch (e) {
     console.error(e);
     throw Errors.UNABLE_TO_RETRIEVE_NODE_STATUS;
