@@ -69,7 +69,7 @@ const block = async (params, req) => {
   if (blockData == null) {
     const blockResponse = await rpc.get_block(blockRequest.block_identifier.hash);
 
-    blockData = blockResponse.result;
+    blockData = blockResponse;
     if (!blockData) {
       throw Errors.COULD_NOT_FETCH_BLOCK;
     }
