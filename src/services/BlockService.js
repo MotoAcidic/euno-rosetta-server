@@ -54,7 +54,7 @@ const block = async (params, req) => {
   if (blockRequest.block_identifier.index != null && !blockRequest.block_identifier.hash) {
     SyncBlockCache.get('')
       const hashResponse = await rpc.get_block_hash(blockRequest.block_identifier.index);
-      blockRequest.block_identifier.hash = hashResponse.result;
+      blockRequest.block_identifier.hash = hashResponse;
       console.log({
           title: 'made it past block hash check',
           hash: blockRequest.block_identifier.hash
@@ -68,7 +68,7 @@ const block = async (params, req) => {
     blockData = SyncBlockCache.get(blockRequest.block_identifier.hash);
   if (blockData == null) {
       const blockResponse = await rpc.get_block(hashResponse);
-      blockData = blockResponse.result;
+      blockData = blockResponse;
       console.log({
           title: 'Made it through count now need hash',
           hash: blockData
