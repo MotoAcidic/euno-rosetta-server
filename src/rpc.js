@@ -5,15 +5,6 @@ const axios = require('axios');
 const Config = require('../config/index.js');
 const { config } = require('bluebird');
 
-const rpcConfig = {
-    protocol: Config.rpc.rpc_proto,
-    user: Config.rpc.rpc_user,
-    pass: Config.rpc.rpc_pass,
-    host: Config.rpc.rpc_host,
-    port: Config.rpc.rpc_port,
-};
-
-
 // Lets create a new local client connection
 const localClient = new Client({
     host: Config.rpc.rpc_host,
