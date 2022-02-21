@@ -820,9 +820,9 @@ class Indexer {
       // 1. Step: Check if utxo exists
         console.log({
             title: 'line 824',
-            input: tx[input]
+            tx: tx
         })
-        const { txid, vout, coinbase } = tx[input];
+        const { txid, vout, coinbase } = input;
 
       // if (!txid || vout == null) {
       //   if (!coinbase) throw new Error(`Invalid input @ blockSymbol = ${blockSymbol}`);
