@@ -818,11 +818,11 @@ class Indexer {
   async batchTransactionInputs(tx, txSymbol, blockSymbol) {
     for (const input of tx) {
       // 1. Step: Check if utxo exists
-        const { txid, vout, coinbase } = tx[input];
+        const { txid, vout, coinbase } =input;
 
         console.log({
             title: 'line 824',
-            tx: tx[input],            
+            tx: tx,            
             txid: txid,
             vout: vout,
             coinbase: coinbase
