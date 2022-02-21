@@ -737,10 +737,10 @@ class Indexer {
       console.error('Null passed to utxoExistsBySymbol');
       return null;
     }
-
+      console.log('made it past step 1')
     // 2. Step: Generate the binary utxo key
     const key = this.serializeUtxoKey(txSymbol, vout);
-
+      console.log('made it past step 2')
     // 3. Step: Fetch from database using generated key
     const value = await this.db.utxo.get(key)
       .catch(() => null);
@@ -749,14 +749,14 @@ class Indexer {
       console.error('Could not find utxo in utxo db');
       return null;
     }
-
+      console.log('made it past step 3')
     // 4. Step: Return key and value
     return {
       key,
       value: Buffer.from(value),
       symbol: txSymbol,
       };
-
+      console.log('made it past step 4')
       console.log({
           Title: 'Line 761',
           txSymbol: txSymbol,
