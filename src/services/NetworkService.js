@@ -110,7 +110,7 @@ const networkStatus = async (params) => {
     );
       console.log({
           title: 'Made it past chain info call, checking if genesis calls',
-          rpcTime; bestBlock.time,
+          rpcTime: bestBlock.time,
           convertTime: currentBlockTimestamp,
           genesis: genesisBlockIdentifier
       })
