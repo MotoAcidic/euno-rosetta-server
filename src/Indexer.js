@@ -24,7 +24,7 @@ const UtxoValueSchema = new JSBinType({
 
 const UtxoKeySchema = new JSBinType({
   'txSymbol': 'uint',
-  'n': 'int',
+  'n': 'uint',
 });
 
 const AddressValueSchema = new JSBinType({
