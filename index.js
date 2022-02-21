@@ -134,7 +134,7 @@ const checkConnection = async () => {
     var chainInfoBlocks = chainInfo.blocks;
 
     console.log({
-        title: 'Sanity check in the checkConnection async call'
+        title: 'Sanity check in the checkConnection async call',
         host: Config.host,
         user: Config.rpcuser,
         pass: Config.rpcpass,
