@@ -250,7 +250,7 @@ class Indexer {
     /**
      * Mark the block as "to be removed"
      */
-    //blockData.remove = removed;
+    blockData.remove = removed;
 
     this.workQueue.push(blockData);
     this.worker();
