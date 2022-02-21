@@ -53,7 +53,7 @@ const block = async (params, req) => {
    */
   if (blockRequest.block_identifier.index != null && !blockRequest.block_identifier.hash) {
     SyncBlockCache.get('')
-    const hashResponse = await rpc.getBlockHashAsync(blockRequest.block_identifier.index);
+      const hashResponse = await rpc.get_block_hash(blockRequest.block_identifier.index);
     blockRequest.block_identifier.hash = hashResponse.result;
   }
 
