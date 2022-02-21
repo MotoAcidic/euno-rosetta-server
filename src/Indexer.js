@@ -233,7 +233,9 @@ class Indexer {
     if (removed) {
       // Block removed
       const { hash, index } = block;
-      blockHash = hash;
+        blockHash = hash;
+        blockHeight = index;
+        console.log('why did we make it here')
     } else {
       // Block added
       blockHash = block.block_identifier.hash;
