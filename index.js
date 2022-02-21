@@ -94,10 +94,7 @@ const continueSyncIfNeeded = async () => {
   const currentHeight = EunoPayIndexer.lastBlockSymbol;
   const blockCountResponse = await rpc.get_block_count();
   const blockCount = blockCountResponse;
-    console.log({
-        currentHeight: currentHeight,
-        rpcHeight: blockCountResponse
-    })
+
   if (currentHeight >= blockCount) {
     // If the sync block height equals the best block height,
     // set the syncer as synced.
@@ -158,19 +155,15 @@ const checkConnection = async () => {
 
 const init = async () => {
   // Wait until rpc is reachable
-  console.log('Made it to connectino Pt 1');
   await checkConnection();
 
   // Start the REST Server
-  console.log('Made it to start Server Pt 2');
   await startServer();
 
   // Init the UTXO indexing service
-    console.log('Made it to the indexer Pt 3');
   await EunoPayIndexer.initIndexer();
 
   // Start the UTXO indexer
-    console.log('Made it to the utxo Pt 4');
   await startSyncer();
 };
 

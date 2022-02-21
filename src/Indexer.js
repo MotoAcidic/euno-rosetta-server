@@ -263,7 +263,6 @@ class Indexer {
     try {
       while (this.workQueue.length > 0) {
         const block = this.workQueue.shift();
-          console.log('what is the output of block', block)
 
         if (this.genesisBlockHash == null) {
           // Expect a genesis block
