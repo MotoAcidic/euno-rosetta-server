@@ -65,8 +65,9 @@ const block = async (params, req) => {
    * Get the block data using rpc call, unless it was found in a local block cache.
    * Return COULD_NOT_FETCH_BLOCK (retriable) if for some reason the request failed. 
    */
-  blockData = SyncBlockCache.get(blockRequest.block_identifier.hash);
+    blockData = SyncBlockCache.get(blockRequest.block_identifier.hash);
   if (blockData == null) {
+      console.log('block data is nul')
     const blockResponse = await rpc.get_block(blockRequest.block_identifier.hash, 2);
 
     blockData = blockResponse.result;
