@@ -736,6 +736,10 @@ class Indexer {
     }
 
     // 2. Step: Generate the binary utxo key
+      console.log({
+          txSymbol: txSymbol,
+          vout: vout
+      })
     const key = this.serializeUtxoKey(txSymbol, vout);
 
     // 3. Step: Fetch from database using generated key
