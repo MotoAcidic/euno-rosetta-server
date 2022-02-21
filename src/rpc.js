@@ -78,6 +78,20 @@ module.exports = {
             });
         });
     },
+
+    // Get the current block count
+    get_block_count: function () {
+        return new Promise((resolve, reject) => {
+            localClient.getBlockCount(function (error, result) {
+                if (error) {
+                    console.log("get_block_count: Wallet query problem. (getBlockCount)");
+                    resolve('error');
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+    },
 }
 
 

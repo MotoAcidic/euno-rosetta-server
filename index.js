@@ -87,15 +87,17 @@ const startSyncer = async () => {
   console.log(`Starting sync from height ${EunoPayIndexer.lastBlockSymbol + 1}...`);
   await EunoPaySyncer.initSyncer();
   continueSyncIfNeeded();
-    console.log('made it past the sync check')
   return true;
 };
 
 const continueSyncIfNeeded = async () => {
   const currentHeight = EunoPayIndexer.lastBlockSymbol;
-  const blockCountResponse = await rpc.getBlockCountAsync();
-  const blockCount = blockCountResponse.result;
-
+  const blockCountResponse = await rpc.get_block_count();
+  const blockCount = blockCountResponse;
+    console.log({
+        currentHeight: currentHeight,
+        rpcHeight: blockCountResponse
+    })
   if (currentHeight >= blockCount) {
     // If the sync block height equals the best block height,
     // set the syncer as synced.
