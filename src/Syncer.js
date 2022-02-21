@@ -35,8 +35,9 @@ class Syncer extends EventEmitter {
     const { fetcher } = this;
     const { networkStatus } = await fetcher.initializeAsserter();
 
-      /* Define some options for the syncer */
-    console.log('Made it to some weird genesis define')
+      /* Define some options for the syncer 
+         this genesis is generated from the api
+         call in ./NetworkService.js           */
     const genesisBlock = networkStatus.genesis_block_identifier;
     const maxSync = 200;
 

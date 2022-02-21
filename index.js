@@ -86,8 +86,8 @@ if (Config.offline) {
 const startSyncer = async () => {
   console.log(`Starting sync from height ${EunoPayIndexer.lastBlockSymbol + 1}...`);
   await EunoPaySyncer.initSyncer();
-    console.log('Made it out of the initSyncer')
   continueSyncIfNeeded();
+    console.log('made it past the sync check')
   return true;
 };
 
