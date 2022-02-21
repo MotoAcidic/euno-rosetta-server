@@ -101,16 +101,19 @@ const networkStatus = async (params) => {
     );
 
     const bestHash = chainInfo.bestblockhash;
-      console.log(bestHash, 'Made it past the chain info call')
     const bestBlock = await rpc.get_block(bestHash, { extension: 'json' });
     currentBlockTimestamp = bestBlock.time * 1000; // milliseconds
-      console.log(bestBlock.time)
-      console.log(currentBlockTimestamp)
     const genesisBlock = await rpc.get_block_hash(0);
     genesisBlockIdentifier = new Types.BlockIdentifier(
       0, // index: 0
       genesisBlock.result, // hash
     );
+      console.log({
+          title: 'Made it past chain info call, checking if genesis calls',
+          rpcTime; bestBlock.time,
+          convertTime: currentBlockTimestamp,
+          genesis: genesisBlockIdentifier
+      })
 
       const peersData = await rpc.get_peer_info();
       console.log(peersData.id);
