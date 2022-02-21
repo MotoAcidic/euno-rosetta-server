@@ -37,8 +37,7 @@ const DEFAULT_EUNO_NETWORK = 'mainnet';
  * A random secret will be used, unless the environment variable
  * SYNCER_SECRET is set.
  */
-const syncerSecret = process.env.SYNCER_SECRET ||
-  crypto.randomBytes(128).toString('hex');
+const syncerSecret = crypto.randomBytes(128).toString('hex');
 
 const config = {
   version: '1.0.0',
