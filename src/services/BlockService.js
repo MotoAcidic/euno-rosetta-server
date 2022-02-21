@@ -65,10 +65,6 @@ const block = async (params, req) => {
   if (blockData == null) {
       const blockResponse = await rpc.get_block(blockRequest.block_identifier.hash);
       blockData = blockResponse;
-      console.log({
-          title: 'Made it through count now need hash',
-          hash: blockData
-      })
     if (!blockData) {
       throw Errors.COULD_NOT_FETCH_BLOCK;
     }
