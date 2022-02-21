@@ -94,10 +94,6 @@ const networkStatus = async (params) => {
       currentBlockIdentifier = new Types.BlockIdentifier(
           chainInfo.blocks, // height
           chainInfo.bestblockhash, // hash
-          console.log({
-              blocks: chainInfo.blocks,
-              bestblockhash: chainInfo.bestblockhash
-          })
     );
 
     const bestHash = chainInfo.bestblockhash;
@@ -108,12 +104,7 @@ const networkStatus = async (params) => {
       0, // index: 0
       genesisBlock, // hash
     );
-      console.log({
-          title: 'Made it past chain info call, checking if genesis calls',
-          rpcTime: bestBlock.time,
-          convertTime: currentBlockTimestamp,
-          genesis: genesisBlockIdentifier
-      })
+
     // TODO need to get the actual peer data to come through instead of throwing invalid
       const peersData = await rpc.get_peer_info();
       console.log(peersData.id);
