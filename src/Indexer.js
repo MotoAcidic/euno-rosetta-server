@@ -248,7 +248,7 @@ class Indexer {
     }
 
     /**
-     * Mark the black as "to be removed"
+     * Mark the block as "to be removed"
      */
     //blockData.remove = removed;
 
@@ -263,6 +263,7 @@ class Indexer {
     try {
       while (this.workQueue.length > 0) {
         const block = this.workQueue.shift();
+          console.log('what is the output of block', block)
 
         if (this.genesisBlockHash == null) {
           // Expect a genesis block
