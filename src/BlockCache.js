@@ -7,7 +7,7 @@ function BlockCache(space = 1000) {
   const hashes = new Array();
 
   this.get = (blockHash) => map[blockHash];
-
+    console.log('made it past this garbage pt 1')
   this.put = (blockHash, block) => {
     map[blockHash] = block;
     hashes.push(blockHash);
@@ -20,7 +20,7 @@ function BlockCache(space = 1000) {
       delete map[hashToBeRemoved];
     }
   };
-    console.log('made it past this garbage')
+    console.log('made it past this garbage pt 2')
 }
 
 module.exports = BlockCache;
