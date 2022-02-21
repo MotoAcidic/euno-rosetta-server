@@ -114,7 +114,7 @@ const networkStatus = async (params) => {
           convertTime: currentBlockTimestamp,
           genesis: genesisBlockIdentifier
       })
-
+    // TODO need to get the actual peer data to come through instead of throwing invalid
       const peersData = await rpc.get_peer_info();
       console.log(peersData.id);
       peers = peersData.map((p) => Types.Peer.constructFromObject({

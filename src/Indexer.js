@@ -737,6 +737,7 @@ class Indexer {
 
     // 2. Step: Generate the binary utxo key
       console.log({
+          title: 'line 743',
           txSymbol: txSymbol,
           vout: vout
       })
@@ -772,7 +773,12 @@ class Indexer {
     }
 
     // console.log(`Looking into utxo db for ${txid}:${vout}...`);
-    const txSymbol = await this.getTxSymbol(txid);
+      const txSymbol = await this.getTxSymbol(txid);
+      console.log({
+          title: 'line 776',
+          txSymbol: txSymbol,
+          vout: vout
+      })
     return await this.utxoExistsBySymbol(txSymbol, vout);
   }
 
@@ -812,6 +818,10 @@ class Indexer {
   async batchTransactionInputs(tx, txSymbol, blockSymbol) {
     for (const input of tx) {
       // 1. Step: Check if utxo exists
+        console.log({
+            title: 'line 824',
+            input: input
+        })
       const { txid, vout, coinbase } = input;
 
       // if (!txid || vout == null) {
