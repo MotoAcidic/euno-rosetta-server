@@ -26,17 +26,15 @@ const UtxoKeySchema = new JSBinType({
   'txSymbol': 'uint',
   'n': 'uint',
 });
-console.log({
-    SymbolSchema: SymbolSchema,
-    UtxoValueSchema: UtxoValueSchema,
-    UtxoKeySchema: UtxoKeySchema
-})
+
 const AddressValueSchema = new JSBinType({
   'txSymbol': ['uint'],
   'vout': ['uint'],
   'address?': 'string',
 });
-
+console.log({
+    Title: 'Made it past address value schema'
+})
 const EMPTY_UTXO_LIST = AddressValueSchema.encode({
   'txSymbol': [],
   'vout': [],
