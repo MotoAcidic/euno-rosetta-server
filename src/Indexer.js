@@ -26,7 +26,11 @@ const UtxoKeySchema = new JSBinType({
   'txSymbol': 'uint',
   'n': 'uint',
 });
-//console.log('UtxoKeySchema', UtxoKeySchema)
+console.log({
+    SymbolSchema: SymbolSchema,
+    UtxoValueSchema: UtxoValueSchema,
+    UtxoKeySchema: UtxoKeySchema
+})
 const AddressValueSchema = new JSBinType({
   'txSymbol': ['uint'],
   'vout': ['uint'],
