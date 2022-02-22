@@ -32,9 +32,7 @@ const AddressValueSchema = new JSBinType({
   'vout': ['uint'],
   'address?': 'string',
 });
-console.log({
-    Title: 'Made it past address value schema'
-})
+
 const EMPTY_UTXO_LIST = AddressValueSchema.encode({
   'txSymbol': [],
   'vout': [],
@@ -279,9 +277,20 @@ class Indexer {
         }
 
         const blockExists = await this.getBlockSymbol(block.hash);
+          console.log({
+              title: 'line 281',
+              blockExist: blockExists
+          })
         const previousBlockHash = block.previousblockhash;
+          console.log({
+              title: 'line 286',
+              previousBlockHash: previousBlockHash
+          })
         const previousBlockSymbol = await this.getBlockSymbol(previousBlockHash);
-
+          console.log({
+              title: 'line 291',
+              previousBlockSymbol: previousBlockSymbol
+          })
         if (block.remove) {
           /**
            * Block will me removed from the utxo database (REORG)
