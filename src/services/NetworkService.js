@@ -120,10 +120,7 @@ const networkStatus = async (params) => {
     throw Errors.UNABLE_TO_RETRIEVE_NODE_STATUS;
   }
     console.log({
-        title: 'Peer Data',
-        peerID: peers.peer_id,
-        add: peers.metadata.addr,
-        version: peers.metadata.version
+        title: 'Peer Data'
 
     })
 
