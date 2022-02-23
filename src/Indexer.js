@@ -1,7 +1,7 @@
 const EventEmitter = require('events');
 const level = require('level');
 const JSBinType = require('js-binary').Type;
-const consoleDebug = require('../debug.js')
+const consoleDebug = require('../debug')
 
 const syncBlockCache = require('./syncBlockCache');
 

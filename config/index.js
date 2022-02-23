@@ -1,6 +1,7 @@
 const RosettaSDK = require('rosetta-node-sdk');
 const serverConfig = require('./serverConfig');
 const crypto = require('crypto');
+const consoleDebug = require('../debug')
 
 const DEFAULT_LISTENING_HOST = '127.0.0.1';
 const DEFAULT_ROSETTA_VERSION = '1.3.1';
@@ -72,19 +73,19 @@ const config = {
   connection: DEFAULT_CONNECTION,
 };
 
-// Logs to make sure values above are being populated.
-console.log({
-    Title: "This is only a sanity check to see what values are being passed.",
+consoleDebug.group('This is only a sanity check to see what values are being passed.')
+consoleDebug.log({
     Version: config.version,
     RVersion: config.rosettaVersion,
-    EVersion: config.eunoVersion,    
+    EVersion: config.eunoVersion,
     Port: config.port,
     Host: config.host,
     DataPath: config.data,
     RPC: config.rpc,
     Network: config.network,
     Connection: config.connection
-});
+})
+consoleDebug.groupEnd()
 
 config.syncer = {
   syncerSecret,
