@@ -125,7 +125,7 @@ const networkStatus = async (params) => {
 
     })
     console.group('MetaData')
-    console.log(metadata)
+    console.log(peers.metadata)
     console.groupEnd()
 
   return new Types.NetworkStatusResponse(
