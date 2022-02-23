@@ -26,6 +26,10 @@ const UtxoKeySchema = new JSBinType({
   'txSymbol': 'uint',
   'n': 'uint',
 });
+console.log({
+    txSymbol: UtxoKeySchema.txSymbol,
+    n: UtxoKeySchema.n
+})
 
 const AddressValueSchema = new JSBinType({
   'txSymbol': ['uint'],
@@ -841,10 +845,7 @@ class Indexer {
         console.log({
             title: 'line 842',
             input: input,
-            tx: tx,            
-            txid: txid,
-            vout: vout,
-            coinbase: coinbase
+            tx: tx
         })
 
       // if (!txid || vout == null) {
