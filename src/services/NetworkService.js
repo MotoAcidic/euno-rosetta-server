@@ -106,6 +106,7 @@ const networkStatus = async (params) => {
     );
 
     // TODO need to get the actual peer data to come through instead of throwing invalid
+      /*
       const peersData = await rpc.get_peer_info();
       console.log(peersData.id);
       peers = peersData.map((p) => Types.Peer.constructFromObject({
@@ -115,18 +116,27 @@ const networkStatus = async (params) => {
         version: p.version,
         subver: p.subver,
       },}))
+      */
+      const peersData = await rpc.get_peer_info();
+      console.log(peersData.id);
+      peers = peersData.map((p) => Types.Peer.constructFromObject({
+          peer_id: p.id,
+          addr: p.addr,
+          version: p.version,
+          subver: p.subver,
+      }))
   } catch (e) {
     console.error(e);
     throw Errors.UNABLE_TO_RETRIEVE_NODE_STATUS;
   }
     console.log({
         title: 'Peer Data',
-        peers: peers
-
+        peers: peers,
+        addr: peers.addr,
+        version: peers.version,
+        subver: peers.subver
     })
-    console.group('MetaData')
-    console.log(peers.metadata)
-    console.groupEnd()
+
 
   return new Types.NetworkStatusResponse(
     currentBlockIdentifier,
