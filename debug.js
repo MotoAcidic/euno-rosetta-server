@@ -24,8 +24,8 @@ module.exports = {
 		console.log(content);
 	},
 
-	hr_top: `*`.repeat(process.stdout.columns - 2),
+	hr_top: `*-*`.repeat(process.stdout.columns - 2),
 
-	hr_bottom: `*`.repeat(process.stdout.columns - 2)
+	hr_bottom: `*-*`.repeat(process.stdout.columns - 2)
 
 };
