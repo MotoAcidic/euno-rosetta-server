@@ -29,7 +29,7 @@ const rpc = require('./src/rpc');
 const Client = require('coinpoolservices-rpc');
 const { block } = require('./src/services/BlockService');
 const { resolve } = require('bluebird');
-global.debugger = require('./debug.js');
+global.consoleDebug = require('./debug.js');
 
 console.log(`                                                                    
              Version                  ${Config.version}
@@ -133,15 +133,15 @@ const checkConnection = async () => {
     var chainInfo = await rpc.get_chain_info();
     var chainInfoBlocks = chainInfo.blocks;
 
-    debugger.group('Sanity check in the checkConnection async call')
-    debugger.log({
+    consoleDebug.group('Sanity check in the checkConnection async call')
+    consoleDebug.log({
         host: Config.host,
         user: Config.rpcuser,
         pass: Config.rpcpass,
         port: Config.rpcport,
         block: chainInfoBlocks
     })
-    debugger.groupEnd()
+    consoleDebug.groupEnd()
 
     for (;;) {
         try {

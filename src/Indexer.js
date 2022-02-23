@@ -27,11 +27,11 @@ const UtxoKeySchema = new JSBinType({
   'n': 'uint',
 });
 
-debugger.group('Debug UtxoKeySchema')
-debugger.log({
+consoleDebug.group('Debug UtxoKeySchema')
+consoleDebug.log({
     UtxoKeySchema: UtxoKeySchema
 })
-debugger.groupEnd()
+consoleDebug.groupEnd()
 
 const AddressValueSchema = new JSBinType({
   'txSymbol': ['uint'],
@@ -80,11 +80,11 @@ const returnSymbol = (symbol) => {
 };
 
 const hexToBin = (hexString) => {
-    debugger.group('Debug Hex String')
-    debugger.log({
+    consoleDebug.group('Debug Hex String')
+    consoleDebug.log({
         hexString: hexString
     })
-    debugger.groupEnd()
+    consoleDebug.groupEnd()
   if(hexString !== undefined)
   {
     if (typeof hexString !== 'string' || hexString.length == 0) {
@@ -285,23 +285,23 @@ class Indexer {
         }
 
         const blockExists = await this.getBlockSymbol(block.hash);
-          debugger.group('Debug blockExists')
-          debugger.log({
+          consoleDebug.group('Debug blockExists')
+          consoleDebug.log({
               blockExists: blockExists
           })
-          debugger.groupEnd()
+          consoleDebug.groupEnd()
         const previousBlockHash = block.previousblockhash;
-          debugger.group('Debug previousBlockHash')
-          debugger.log({
+          consoleDebug.group('Debug previousBlockHash')
+          consoleDebug.log({
               previousBlockHash: previousBlockHash
           })
-          debugger.groupEnd()
+          consoleDebug.groupEnd()
         const previousBlockSymbol = await this.getBlockSymbol(previousBlockHash);
-          debugger.group('Debug previousBlockSymbol')
-          debugger.log({
+          consoleDebug.group('Debug previousBlockSymbol')
+          consoleDebug.log({
               previousBlockSymbol: previousBlockSymbol
           })
-          debugger.groupEnd()
+          consoleDebug.groupEnd()
         if (block.remove) {
           /**
            * Block will me removed from the utxo database (REORG)
@@ -754,14 +754,14 @@ class Indexer {
       console.error('Null passed to utxoExistsBySymbol');
       return null;
     }
-      debugger.group('Step 1')
-      debugger.log('Made past step 1')
-      debugger.groupEnd()
+      consoleDebug.group('Step 1')
+      consoleDebug.log('Made past step 1')
+      consoleDebug.groupEnd()
     // 2. Step: Generate the binary utxo key
     const key = this.serializeUtxoKey(txSymbol, vout);
-      debugger.group('Step 2')
-      debugger.log('Made past step 2')
-      debugger.groupEnd()
+      consoleDebug.group('Step 2')
+      consoleDebug.log('Made past step 2')
+      consoleDebug.groupEnd()
     // 3. Step: Fetch from database using generated key
     const value = await this.db.utxo.get(key)
       .catch(() => null);
@@ -770,17 +770,17 @@ class Indexer {
       console.error('Could not find utxo in utxo db');
       return null;
     }
-      debugger.group('Step 3')
-      debugger.log('Made past step 3')
-      debugger.groupEnd()
+      consoleDebug.group('Step 3')
+      consoleDebug.log('Made past step 3')
+      consoleDebug.groupEnd()
     // 4. Step: Return key and value
     return {
       key,
       value: Buffer.from(value),
       symbol: txSymbol,
     };
-      debugger.group('Step 4')
-      debugger.log({
+      consoleDebug.group('Step 4')
+      consoleDebug.log({
           Title: 'Made it past step 4',
           txSymbol: txSymbol,
           vout: vout,
@@ -788,7 +788,7 @@ class Indexer {
           value: value,
           symbol: symbol
       })
-      debugger.groupEnd()
+      consoleDebug.groupEnd()
   }
 
   async utxoExists(txid, vout) {
@@ -805,12 +805,12 @@ class Indexer {
 
     // console.log(`Looking into utxo db for ${txid}:${vout}...`);
       const txSymbol = await this.getTxSymbol(txid);
-      debugger.group('Debug txSymbol')
-      debugger.log({
+      consoleDebug.group('Debug txSymbol')
+      consoleDebug.log({
           txSymbol: txSymbol,
           vout: vout
       })
-      debugger.groupEnd()
+      consoleDebug.groupEnd()
 
     return await this.utxoExistsBySymbol(txSymbol, vout);
   }
@@ -853,12 +853,12 @@ class Indexer {
       // 1. Step: Check if utxo exists
         const { txid, vout, coinbase } =input;
 
-        debugger.group('batchTransactionInputs')
-        debugger.log({
+        consoleDebug.group('batchTransactionInputs')
+        consoleDebug.log({
             input: input,
             tx: tx
         })
-        debugger.groupEnd()
+        consoleDebug.groupEnd()
 
       // if (!txid || vout == null) {
       //   if (!coinbase) throw new Error(`Invalid input @ blockSymbol = ${blockSymbol}`);
@@ -1060,19 +1060,19 @@ class Indexer {
   async getBlockSymbol(hash) {
     if (!hash) return null;
 
-      debugger.group('Debug getBlockSymbol hash')
-      debugger.log({
+      consoleDebug.group('Debug getBlockSymbol hash')
+      consoleDebug.log({
           getBlockSymbol: this.getBlockSymbol,
           hash: hash
       })
-      debugger.groupEnd()
+      consoleDebug.groupEnd()
     // Return symbol from the last seen cache.
     const isLastSeen = this.lastSeenBlockHashes[hash];
-      debugger.group('Debug is last seen hash')
-      debugger.log({
+      consoleDebug.group('Debug is last seen hash')
+      consoleDebug.log({
           isLastSeen: isLastSeen
       })
-      debugger.groupEnd()
+      consoleDebug.groupEnd()
     if (isLastSeen != null) return isLastSeen;
 
     const encodedSymbol = await this.db['block-sym'].get(hexToBin(hash))
