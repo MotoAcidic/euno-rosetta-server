@@ -804,7 +804,8 @@ class Indexer {
     const ops = this.dbBatches.utxo;
 
     // Step 1: Get binary encoding and retrieve the updated utxo value
-    const key = serializedKey || this.serializeUtxoKey(spentInTx, vout);
+    //const key = serializedKey || this.serializeUtxoKey(spentInTx, vout);
+    const key = this.serializeUtxoKey(spentInTx, vout);
     const value = this.serializeUtxoValue(sats, addressSymbol, blockSymbol, spentInTx, spentOnBlock);
 
     // Step 2: Add the updated utxo to the batch queue
