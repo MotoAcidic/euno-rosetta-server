@@ -124,11 +124,9 @@ const networkStatus = async (params) => {
         peers: peers
 
     })
-    console.log({
-        title: 'Meta Data',
-        metadata: metadata
-
-    })
+    console.group('MetaData')
+    console.log(metadata)
+    console.groupEnd()
 
   return new Types.NetworkStatusResponse(
     currentBlockIdentifier,
