@@ -1053,7 +1053,11 @@ class Indexer {
           hash: hash
       })
     // Return symbol from the last seen cache.
-    const isLastSeen = this.lastSeenBlockHashes[hash];
+      const isLastSeen = this.lastSeenBlockHashes[hash];
+      console.log({
+          title: 'Line 1058',
+          isLastSeen: isLastSeen
+      })
     if (isLastSeen != null) return isLastSeen;
 
     const encodedSymbol = await this.db['block-sym'].get(hexToBin(hash))
