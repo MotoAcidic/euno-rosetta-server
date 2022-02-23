@@ -821,7 +821,6 @@ class Indexer {
     // Patch
     Object.assign(existing, {
       txSymbol: spentInTx,
-      identifier: identifier,
       txid: txid,
       n: vout,
       block: blockSymbol,
@@ -840,7 +839,8 @@ class Indexer {
         const { txid, vout, coinbase } =input;
 
         console.log({
-            title: 'line 824',
+            title: 'line 842',
+            input: input,
             tx: tx,            
             txid: txid,
             vout: vout,
