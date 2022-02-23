@@ -119,6 +119,10 @@ const networkStatus = async (params) => {
     console.error(e);
     throw Errors.UNABLE_TO_RETRIEVE_NODE_STATUS;
   }
+    console.log({
+        title: 'Peers Check',
+        peer: peers
+    })
 
   return new Types.NetworkStatusResponse(
     currentBlockIdentifier,
