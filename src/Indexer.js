@@ -821,6 +821,7 @@ class Indexer {
     // Patch
     Object.assign(existing, {
       txSymbol: spentInTx,
+      identifier: identifier,
       txid: txid,
       n: vout,
       block: blockSymbol,
