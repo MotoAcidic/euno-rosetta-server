@@ -133,14 +133,15 @@ const checkConnection = async () => {
     var chainInfo = await rpc.get_chain_info();
     var chainInfoBlocks = chainInfo.blocks;
 
-    console.log({
-        title: 'Sanity check in the checkConnection async call',
+    debug.group('Sanity check in the checkConnection async call')
+    debug.log({
         host: Config.host,
         user: Config.rpcuser,
         pass: Config.rpcpass,
         port: Config.rpcport,
         block: chainInfoBlocks
     })
+    debug.groupEnd()
 
     for (;;) {
         try {
