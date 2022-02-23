@@ -51,7 +51,6 @@ const balance = async (params) => {
     console.log('Made it into Account Services')
   // Prepare the block identifier for the response
   const blockIdentifier = new Types.BlockIdentifier();
-    console.log(blockIdentifier)
   if (accountBalanceRequest.block_identifier) {
     if (accountBalanceRequest.block_identifier.hash) {
       atBlock = accountBalanceRequest.block_identifier.hash;
