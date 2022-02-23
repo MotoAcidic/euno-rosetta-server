@@ -121,7 +121,9 @@ const networkStatus = async (params) => {
   }
     console.log({
         title: 'Peers Check',
-        peer: peers
+        peer: peers,
+        addr: metadata.addr,
+        sub : metadata.subver
     })
 
   return new Types.NetworkStatusResponse(
