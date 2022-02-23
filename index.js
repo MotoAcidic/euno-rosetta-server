@@ -29,7 +29,7 @@ const rpc = require('./src/rpc');
 const Client = require('coinpoolservices-rpc');
 const { block } = require('./src/services/BlockService');
 const { resolve } = require('bluebird');
-global.consoleDebug = require('./debug.js');
+const consoleDebug = require('./debug.js')
 
 console.log(`                                                                    
              Version                  ${Config.version}
