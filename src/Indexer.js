@@ -28,12 +28,6 @@ const UtxoKeySchema = new JSBinType({
   'n': 'uint',
 });
 
-consoleDebug.group('Debug UtxoKeySchema')
-consoleDebug.log({
-    UtxoKeySchema: UtxoKeySchema
-})
-consoleDebug.groupEnd()
-
 const AddressValueSchema = new JSBinType({
   'txSymbol': ['uint'],
   'vout': ['uint'],
@@ -108,6 +102,13 @@ const binToHex = (binary) => {
 
 const serializeAddress = (address) => address;
 const deserializeAddress = (serializedAddress) => serializedAddress;
+
+consoleDebug.group('Serialize Address TOP')
+consoleDebug.log({
+    serializeAddress: serializeAddress,
+    deserializeAddress: deserializeAddress
+})
+consoleDebug.groupEnd
 
 class DatabaseWrapper {
   constructor(dbInstance, namespace, prefix) {
@@ -1070,12 +1071,6 @@ class Indexer {
   async getBlockSymbol(hash) {
     if (!hash) return null;
 
-      consoleDebug.group('Debug getBlockSymbol hash')
-      consoleDebug.log({
-          getBlockSymbol: this.getBlockSymbol,
-          hash: hash
-      })
-      consoleDebug.groupEnd()
     // Return symbol from the last seen cache.
     const isLastSeen = this.lastSeenBlockHashes[hash];
       consoleDebug.group('Debug is last seen hash')
