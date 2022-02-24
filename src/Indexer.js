@@ -25,7 +25,7 @@ const UtxoValueSchema = new JSBinType({
 
 const UtxoKeySchema = new JSBinType({
   'txSymbol': 'uint',
-  'n': 'string',
+  'n': 'uint',
 });
 
 consoleDebug.group('Debug UtxoKeySchema')
@@ -499,6 +499,12 @@ class Indexer {
           // Get the address of the output
           const address = await this.getAddressSymbol(output);
           const addressSymbol = address.value;
+
+            consoleDebug.group('Address test')
+            consoleDebug.log({
+                address: address,
+                addressSymbol: addressSymbol
+            })
 
           // Delete the utxo
           //console.log(`  Deleting ${tx.txid}:${output.n}`);
