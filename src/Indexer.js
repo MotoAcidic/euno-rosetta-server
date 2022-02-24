@@ -25,7 +25,7 @@ const UtxoValueSchema = new JSBinType({
 
 const UtxoKeySchema = new JSBinType({
   'txSymbol': 'uint',
-  'n': 'uint',
+  'n': 'string',
 });
 
 consoleDebug.group('Debug UtxoKeySchema')
