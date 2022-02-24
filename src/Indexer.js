@@ -509,7 +509,10 @@ class Indexer {
           // Delete the utxo
           //console.log(`  Deleting ${tx.txid}:${output.n}`);
           const key = this.serializeUtxoKey(txSym, output.n);
-
+            consoleDebug.group('Key test')
+            consoleDebug.log({
+                key: key
+            })
           this.dbBatches.utxo.push({
             type: 'del',
             key: key,
